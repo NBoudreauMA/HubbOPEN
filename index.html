@@ -3,30 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HubbOPEN | Hubbardston Financial Transparency</title>
-    <meta name="description" content="Explore Hubbardston's financial data, budget information, and town expenditures through our interactive portal.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Hubbardston FY26 Budget Portal</title>
+    <meta name="description" content="Explore Hubbardston's FY26 proposed budget, including revenue, expenditures, and key initiatives.">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <!-- Loading Animation -->
-    <div class="loading">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <span class="logo-text">HubbOPEN</span>
-            </div>
+            <div class="logo"><span class="logo-text">HubbFY26</span></div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#budget">Budget</a>
+                <a href="#budget">FY26 Budget</a>
                 <a href="#reports">Reports</a>
                 <a href="#about">About</a>
             </div>
@@ -36,160 +25,42 @@
     <!-- Hero Section -->
     <header class="hero" id="home">
         <div class="hero-content">
-            <h1>Hubbardston Financial Transparency</h1>
-            <p>Explore our town's finances with interactive data and real-time insights</p>
-            <div class="hero-buttons">
-                <a href="#explore" class="btn primary">Explore Data</a>
-                <a href="#learn" class="btn secondary">Learn More</a>
-            </div>
+            <h1>Hubbardston FY26 Proposed Budget</h1>
+            <p>Explore the financial outlook for FY26, including revenue, expenditures, and investment priorities.</p>
         </div>
         <div class="hero-stats">
             <div class="stat-card">
                 <i class="fas fa-chart-line"></i>
-                <h3>FY2024 Budget</h3>
-                <p class="stat-number">12500000</p>
+                <h3>FY26 Total Revenue</h3>
+                <p class="stat-number" id="total-revenue">Loading...</p>
             </div>
             <div class="stat-card">
-                <i class="fas fa-home"></i>
-                <h3>Property Tax</h3>
-                <p class="stat-number">8200000</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-road"></i>
-                <h3>Infrastructure</h3>
-                <p class="stat-number">2100000</p>
+                <i class="fas fa-balance-scale"></i>
+                <h3>FY26 Total Expenditures</h3>
+                <p class="stat-number" id="total-expenditures">Loading...</p>
             </div>
         </div>
     </header>
 
-    <!-- Features Section -->
-    <section class="features" id="budget">
-        <h2>Explore Our Finances</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
-                <h3>Current Budget</h3>
-                <p>Access detailed breakdowns of our current fiscal year budget, including department allocations and project funding.</p>
-                <a href="#" class="feature-link">View Details →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-history"></i>
-                </div>
-                <h3>Historical Data</h3>
-                <p>Compare spending trends and budget allocations across previous fiscal years with interactive charts.</p>
-                <a href="#" class="feature-link">View History →</a>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-project-diagram"></i>
-                </div>
-                <h3>Projects</h3>
-                <p>Track ongoing and planned infrastructure projects, including timelines and budget status.</p>
-                <a href="#" class="feature-link">View Projects →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reports Section -->
-    <section class="reports" id="reports">
-        <div class="reports-container">
-            <h2>Latest Reports</h2>
-            <div class="reports-grid">
-                <div class="report-card">
-                    <div class="report-header">
-                        <i class="fas fa-file-alt"></i>
-                        <span class="report-date">Feb 2024</span>
-                    </div>
-                    <h3>Q1 Financial Report</h3>
-                    <p>Comprehensive overview of Q1 2024 financial performance and key metrics</p>
-                    <a href="#" class="btn secondary">Download PDF</a>
-                </div>
-                <div class="report-card">
-                    <div class="report-header">
-                        <i class="fas fa-chart-pie"></i>
-                        <span class="report-date">Jan 2024</span>
-                    </div>
-                    <h3>Annual Budget Report</h3>
-                    <p>Detailed breakdown of the annual budget allocation and spending categories</p>
-                    <a href="#" class="btn secondary">Download PDF</a>
-                </div>
-                <div class="report-card">
-                    <div class="report-header">
-                        <i class="fas fa-tasks"></i>
-                        <span class="report-date">Dec 2023</span>
-                    </div>
-                    <h3>Project Updates</h3>
-                    <p>Status updates on ongoing town projects and future planning initiatives</p>
-                    <a href="#" class="btn secondary">Download PDF</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <h2>About HubbOPEN</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>HubbOPEN is Hubbardston's commitment to financial transparency and civic engagement. Our platform provides residents with easy access to detailed financial information, ensuring accountability and informed decision-making.</p>
-                    <a href="#" class="btn primary">Learn More About Us</a>
-                </div>
-                <div class="about-stats">
-                    <div class="about-stat">
-                        <i class="fas fa-users"></i>
-                        <h4>Population</h4>
-                        <p>4,500+</p>
-                    </div>
-                    <div class="about-stat">
-                        <i class="fas fa-calendar"></i>
-                        <h4>Founded</h4>
-                        <p>1767</p>
-                    </div>
-                    <div class="about-stat">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h4>Area</h4>
-                        <p>41.9 sq mi</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Budget Details Section -->
+    <section class="budget-details" id="budget">
+        <h2>FY26 Budget Overview</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>FY26 Proposed</th>
+                </tr>
+            </thead>
+            <tbody id="budget-table">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>Town Hall: (978) 928-1400</p>
-                <p>Email: info@hubbardston-ma.gov</p>
-                <p>7 Main St, Hubbardston, MA 01452</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Town Website</a>
-                <a href="#">Meeting Schedule</a>
-                <a href="#">Department Directory</a>
-                <a href="#">Public Records</a>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Town of Hubbardston. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 Town of Hubbardston. All rights reserved.</p>
     </footer>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
 </body>
 </html>
