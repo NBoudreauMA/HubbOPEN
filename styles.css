@@ -1,0 +1,269 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navigation Bar */
+nav {
+    background: #165a22; /* Rich green */
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+
+nav:hover {
+    background: #1c6e2c; /* Slightly brighter green on hover */
+}
+
+nav a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px 15px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Smooth underline effect */
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #ffcc00; /* Gold highlight */
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+nav a:hover {
+    color: #ffcc00; /* Highlight text color */
+}
+
+/* Animated Dropdown for Departments */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.nav-dropdown-content a {
+    display: block;
+    color: #165a22;
+    padding: 10px 15px;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.nav-dropdown-content a:hover {
+    background: #f4f7f6;
+    color: #165a22;
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    background: url('hubbardston_bg.jpg') center/cover no-repeat;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+/* Modern Navbar Styling */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(10, 72, 30, 0.9); /* Transparent dark green */
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+/* Navbar on Scroll */
+.navbar.scrolled {
+    background: #0a481e; /* Solid green */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo */
+.nav-logo img {
+    width: 50px;
+    height: auto;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Animated Underline */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #ffcc00; /* Gold accent */
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #0a481e;
+    padding: 10px 15px;
+    text-align: left;
+    transition: background 0.3s ease-in-out;
+}
+
+.dropdown-menu a:hover {
+    background: #f4f7f6;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #0a481e;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 15px 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.nav-active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .hamburger-menu.toggle .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger-menu.toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.toggle .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
