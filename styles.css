@@ -1,6 +1,6 @@
-/* Base styles */
+/* Base styles with Green Theme */
 :root {
-  --primary-color: #2a2a72;
+  --primary-color: #2a7d2e;
   --text-color: #222;
   --background-light: #f9f9f9;
   --spacing: 2rem;
@@ -89,6 +89,36 @@ body {
 .budget-details th {
   background-color: var(--primary-color);
   color: white;
+}
+
+.key-initiatives {
+  padding: var(--spacing);
+  background: #eafbea;
+  text-align: center;
+}
+
+.key-initiatives h2 {
+  color: var(--primary-color);
+}
+
+.key-initiatives ul {
+  list-style: none;
+  padding: 0;
+}
+
+.key-initiatives li {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.contact {
+  padding: var(--spacing);
+  background: #d4edd4;
+  text-align: center;
+}
+
+.contact h2 {
+  color: var(--primary-color);
 }
 
 footer {
