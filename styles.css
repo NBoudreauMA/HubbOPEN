@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Navigation */
+/* Thinner Navigation Bar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -16,28 +16,46 @@ body {
     top: 0;
     width: 100%;
     background: #1e5b24;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1.5rem;  /* Reduced padding for thinner navbar */
+    height: 50px;  /* Reduced height */
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* Navbar Logo */
+.nav-logo {
+    height: 40px; /* Adjusted to match thinner navbar */
+    width: auto;
+}
+
+/* Navbar Links */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    padding: 8px 12px;
+    font-size: 0.9rem;  /* Slightly smaller font for better fit */
+    padding: 5px 10px;
     transition: color 0.3s, transform 0.2s;
 }
 
 .nav-links a:hover {
     color: #ffd700;
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2a7d2e, #1e5b24);
+    color: white;
+    text-align: center;
+    padding: 3rem 0;
+    border-radius: 0 0 30px 30px;
 }
 
 /* Toggle Sections */
@@ -71,4 +89,13 @@ body {
     background: #f9f9f9;
     border-radius: 8px;
     margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #2a7d2e;
+    color: white;
+    margin-top: 2rem;
 }
