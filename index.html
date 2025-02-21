@@ -8,13 +8,6 @@
     <script defer src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <style>
-        .chart-container {
-            width: 80%;
-            max-width: 400px;
-            margin: auto;
-        }
-    </style>
 </head>
 <body>
 
@@ -34,50 +27,85 @@
     </div>
 
     <!-- Town Administrator's Message -->
-    <section class="ta-message" id="message">
-        <div class="message-container">
-            <h1>Message from the Town Administrator</h1>
+    <section class="dashboard-section" id="message">
+        <button class="collapse-btn">Town Administrator's Message</button>
+        <div class="content">
+            <h2>Message from the Town Administrator</h2>
             <p>Welcome to the FY26 Budget Dashboard. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
             <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
         </div>
     </section>
 
-    <!-- Revenue Section with Interactive Chart -->
-    <section class="budget-details" id="revenue">
-        <h2>Revenue Overview</h2>
-        <div class="chart-container">
-            <canvas id="revenueChart"></canvas>
+    <!-- Revenue Section with Full Table -->
+    <section class="dashboard-section" id="revenue">
+        <button class="collapse-btn">Revenue Overview</button>
+        <div class="content">
+            <h2>Revenue Breakdown</h2>
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>FY26 Projected ($M)</th>
+                    </tr>
+                </thead>
+                <tbody id="revenue-table">
+                    <!-- Dynamic Data Loaded Here -->
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <!-- Expenditures Section with Animated Stats -->
-    <section class="budget-details" id="expenditures">
-        <h2>Expenditures Breakdown</h2>
-        <div class="expenditure-list">
-            <div class="exp-card" id="public-safety">Public Safety: $3.2M</div>
-            <div class="exp-card" id="education">Education: $5.5M</div>
-            <div class="exp-card" id="infrastructure">Infrastructure: $2.1M</div>
+    <!-- Expenditures Section with Full Table -->
+    <section class="dashboard-section" id="expenditures">
+        <button class="collapse-btn">Expenditures Breakdown</button>
+        <div class="content">
+            <h2>Expenditures Breakdown</h2>
+            <div class="expenditure-list">
+                <div class="exp-card" id="public-safety">Public Safety: $3.2M</div>
+                <div class="exp-card" id="education">Education: $5.5M</div>
+                <div class="exp-card" id="infrastructure">Infrastructure: $2.1M</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>FY26 Proposed ($M)</th>
+                    </tr>
+                </thead>
+                <tbody id="expenditures-table">
+                    <!-- Dynamic Data Loaded Here -->
+                </tbody>
+            </table>
         </div>
     </section>
 
     <!-- Capital Improvement Plan -->
-    <section class="budget-details" id="capital">
-        <h2>Capital Improvement Plan</h2>
-        <div class="capital-projects">
-            <div class="project-card">New Fire Station - $1.5M</div>
-            <div class="project-card">Roadway Resurfacing - $2.3M</div>
-            <div class="project-card">Technology Upgrade - $800K</div>
+    <section class="dashboard-section" id="capital">
+        <button class="collapse-btn">Capital Improvement Plan</button>
+        <div class="content">
+            <h2>Capital Improvement Plan</h2>
+            <div class="capital-projects">
+                <div class="project-card">New Fire Station - $1.5M</div>
+                <div class="project-card">Roadway Resurfacing - $2.3M</div>
+                <div class="project-card">Technology Upgrade - $800K</div>
+            </div>
         </div>
     </section>
 
     <!-- More Information Section -->
-    <section class="info" id="info">
-        <h2>More Information</h2>
-        <ul>
-            <li><a href="#">Budget Documents</a></li>
-            <li><a href="#">Financial Policies</a></li>
-            <li><a href="#">Community Engagement Sessions</a></li>
-        </ul>
+    <section class="dashboard-section" id="info">
+        <button class="collapse-btn">More Information</button>
+        <div class="content">
+            <h2>More Information</h2>
+            <ul>
+                <li><a href="#">Budget Documents</a></li>
+                <li><a href="#">Financial Policies</a></li>
+                <li><a href="#">Community Engagement Sessions</a></li>
+            </ul>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -86,13 +114,11 @@
     </footer>
 
     <script>
-        // Animated Expenditures Section
-        document.querySelectorAll('.exp-card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                gsap.to(card, { scale: 1.1, duration: 0.3 });
-            });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, { scale: 1, duration: 0.3 });
+        // Collapsible Sections
+        document.querySelectorAll(".collapse-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                const content = button.nextElementSibling;
+                content.style.display = content.style.display === "block" ? "none" : "block";
             });
         });
 
