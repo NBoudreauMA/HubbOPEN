@@ -55,10 +55,15 @@ body {
 }
 
 .hero {
-    background-color: var(--secondary-color);
+    background: linear-gradient(rgba(30, 91, 36, 0.9), rgba(42, 125, 46, 0.8)), 
+                url('https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     text-align: center;
     padding: 4rem 2rem;
+    position: relative;
 }
 
 .hero h1 {
@@ -99,7 +104,7 @@ body {
     margin: 0 auto;
 }
 
-#revenueChart {
+#revenueChart, #expenditureChart {
     height: 300px !important;
     max-height: 300px;
     width: 100% !important;
