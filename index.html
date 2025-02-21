@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hubbardston FY26 Budget Proposal</title>
-    <meta name="description" content="Explore Hubbardston's FY26 budget proposal, financial outlook, and strategic priorities.">
+    <title>Hubbardston Budget Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,27 +17,27 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo"><span class="logo-text">HubbFY26</span></div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#message">TA Message</a>
-                <a href="#revenue">Revenue</a>
-                <a href="#expenditures">Expenditures</a>
-                <a href="#capital">Capital Improvement</a>
-                <a href="#info">More Info</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#message">TA Message</a>
+        <a href="#revenue">Revenue</a>
+        <a href="#expenditures">Expenditures</a>
+        <a href="#capital">Capital Improvement</a>
+        <a href="#info">More Info</a>
     </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Hubbardston's Budget Dashboard</h1>
+    </div>
 
     <!-- Town Administrator's Message -->
     <section class="ta-message" id="message">
         <div class="message-container">
             <h1>Message from the Town Administrator</h1>
-            <p>Welcome to the FY26 Budget Proposal website. Our mission is to create a sustainable, forward-thinking budget that supports our community’s growth while maintaining fiscal responsibility.</p>
+            <p>Welcome to the FY26 Budget Dashboard. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
             <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
         </div>
     </section>
@@ -54,7 +53,6 @@
     <!-- Expenditures Section with Animated Stats -->
     <section class="budget-details" id="expenditures">
         <h2>Expenditures Breakdown</h2>
-        <p>Hover over a category to highlight key budget areas.</p>
         <div class="expenditure-list">
             <div class="exp-card" id="public-safety">Public Safety: $3.2M</div>
             <div class="exp-card" id="education">Education: $5.5M</div>
@@ -62,7 +60,7 @@
         </div>
     </section>
 
-    <!-- Capital Improvement Plan with Hover Effects -->
+    <!-- Capital Improvement Plan -->
     <section class="budget-details" id="capital">
         <h2>Capital Improvement Plan</h2>
         <div class="capital-projects">
@@ -82,16 +80,9 @@
         </ul>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:admin@hubbardstonma.gov">admin@hubbardstonma.gov</a></p>
-        <p>Phone: (978) 928-1400 x200</p>
-    </section>
-
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Town of Hubbardston. All rights reserved.</p>
+        © 2025 Town of Hubbardston - Budget Dashboard
     </footer>
 
     <script>
