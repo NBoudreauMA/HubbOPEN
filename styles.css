@@ -373,3 +373,104 @@ canvas {
 .funding-sources li {
     margin-bottom: 0.5rem;
 }
+.timeline {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 2rem 1rem;
+    gap: 1rem;
+    position: relative;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-color);
+    top: 50px;
+    left: 0;
+    z-index: 1;
+}
+
+.timeline-month {
+    flex: 0 0 300px;
+    position: relative;
+    z-index: 2;
+}
+
+.month-label {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    position: relative;
+}
+
+.month-label::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px);
+}
+
+.timeline-card.highlight {
+    border-left: 4px solid var(--accent-color);
+}
+
+.timeline-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-card li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.timeline-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding: 1rem 0.5rem;
+    }
+    
+    .timeline-month {
+        flex: 0 0 250px;
+    }
+}
