@@ -220,10 +220,12 @@
     </div>
 
     <div class="dashboard-section" id="info">
-        <button class="toggle-box">More Information</button>
-        <div class="toggle-content">
-            <div class="info-subsection">
-                <h3>Where Your Tax Dollars Go</h3>
+    <button class="toggle-box">More Information</button>
+    <div class="toggle-content">
+        <!-- Tax Info Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Where Your Tax Dollars Go</button>
+            <div class="sub-toggle-content">
                 <div class="tax-info">
                     <p>For every $100 of your property tax payment in FY26:</p>
                     
@@ -265,47 +267,52 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="info-subsection">
-                <h3>Year-Over-Year Changes</h3>
-                <div class="changes-info">                    
-                    <div class="changes-grid">
-                        <div class="change-card">
-                            <h4>Tax Levy</h4>
-                            <div class="change-amount">+4.8%</div>
-                            <div class="change-details">
-                                <div>FY25: $8,852,568</div>
-                                <div>FY26: $9,276,259</div>
-                            </div>
+        <!-- Changes Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Year-Over-Year Changes</button>
+            <div class="sub-toggle-content">
+                <div class="changes-grid">
+                    <div class="change-card">
+                        <h4>Tax Levy</h4>
+                        <div class="change-amount">+4.8%</div>
+                        <div class="change-details">
+                            <div>FY25: $8,852,568</div>
+                            <div>FY26: $9,276,259</div>
                         </div>
-                        
-                        <div class="change-card">
-                            <h4>State Aid</h4>
-                            <div class="change-amount">+2.7%</div>
-                            <div class="change-details">
-                                <div>FY25: $711,871</div>
-                                <div>FY26: $730,906</div>
-                            </div>
+                    </div>
+                    
+                    <div class="change-card">
+                        <h4>State Aid</h4>
+                        <div class="change-amount">+2.7%</div>
+                        <div class="change-details">
+                            <div>FY25: $711,871</div>
+                            <div>FY26: $730,906</div>
                         </div>
-                        
-                        <div class="change-card">
-                            <h4>Local Receipts</h4>
-                            <div class="change-amount">+7.8%</div>
-                            <div class="change-details">
-                                <div>FY25: $1,502,964</div>
-                                <div>FY26: $1,619,684</div>
-                            </div>
+                    </div>
+                    
+                    <div class="change-card">
+                        <h4>Local Receipts</h4>
+                        <div class="change-amount">+7.8%</div>
+                        <div class="change-details">
+                            <div>FY25: $1,502,964</div>
+                            <div>FY26: $1,619,684</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="info-subsection">
-                <h3>Budget Timeline</h3>
+        <!-- Timeline Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Budget Timeline</button>
+            <div class="sub-toggle-content">
                 <div id="timeline"></div>
             </div>
         </div>
     </div>
+</div>
 
     <footer>
         <p>© 2025 Town of Hubbardston - Budget Portal</p>
