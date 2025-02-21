@@ -1,163 +1,126 @@
-:root {
-    --primary-color: #2a7d2e;
-    --secondary-color: #1e5b24;
-    --accent-color: #ffd700;
-    --text-color: #333;
-    --background-color: #f5f5f5;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
 
-.navbar {
-    background-color: var(--primary-color);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    // Section toggles
+    document.querySelectorAll(".toggle-content").forEach(content => {
+        content.style.display = "none";
+    });
 
-.logo img {
-    height: 50px;
-}
+    document.querySelectorAll(".toggle-box").forEach(button => {
+        button.addEventListener("click", function() {
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-}
+    // Revenue Chart
+    const revenueCtx = document.getElementById("revenueChart").getContext("2d");
+    new Chart(revenueCtx, {
+        type: "bar",
+        data: {
+            labels: ["Tax Levy", "State Aid", "Local Receipts"],
+            datasets: [{
+                label: "FY23 Actual",
+                data: [8052778, 668674, 1364392],
+                backgroundColor: "#2a7d2e"
+            }, {
+                label: "FY24 Actual",
+                data: [8425343, 682452, 1478687],
+                backgroundColor: "#1e5b24"
+            }, {
+                label: "FY25 Budget",
+                data: [8852568, 711871, 1502964],
+                backgroundColor: "#34d399"
+            }, {
+                label: "FY26 Proposed",
+                data: [9276259, 730906, 1619684],
+                backgroundColor: "#ffd700"
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 2,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': $' + context.raw.toLocaleString();
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--accent-color);
-}
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.hero {
-    background-color: var(--secondary-color);
-    color: white;
-    text-align: center;
-    padding: 4rem 2rem;
-}
-
-.hero h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.dashboard-section {
-    margin: 2rem auto;
-    max-width: 1200px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.toggle-box {
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    text-align: left;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.toggle-box:hover {
-    background-color: var(--secondary-color);
-}
-
-.toggle-content {
-    padding: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-#revenueChart {
-    height: 300px !important;
-    max-height: 300px;
-    width: 100% !important;
-    margin: 20px 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-}
-
-th, td {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--primary-color);
-        padding: 1rem;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-    }
-}
-
-canvas {
-    max-width: 100%;
-    height: auto;
-    margin: 1rem 0;
-}
+    // Expenditure Chart
+    const expenditureCtx = document.getElementById("expenditureChart").getContext("2d");
+    new Chart(expenditureCtx, {
+        type: "bar",
+        data: {
+            labels: ["General Gov", "Public Safety", "Education", "Public Works"],
+            datasets: [{
+                label: "FY26 Budget",
+                data: [1200000, 2500000, 5000000, 1800000],
+                backgroundColor: [
+                    "#2a7d2e",
+                    "#1e5b24",
+                    "#34d399",
+                    "#ffd700"
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 2,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': $' + context.raw.toLocaleString();
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+});
