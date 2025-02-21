@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston FY26 Budget Proposal</title>
-    <meta name="description" content="Explore Hubbardston's FY26 budget proposal, including revenue, expenditures, and key initiatives.">
+    <meta name="description" content="Explore Hubbardston's FY26 budget proposal, financial outlook, and strategic priorities.">
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -15,63 +24,67 @@
             <div class="logo"><span class="logo-text">HubbFY26</span></div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#budget">FY26 Budget</a>
-                <a href="#initiatives">Key Initiatives</a>
-                <a href="#reports">Reports</a>
+                <a href="#message">TA Message</a>
+                <a href="#revenue">Revenue</a>
+                <a href="#expenditures">Expenditures</a>
+                <a href="#capital">Capital Improvement</a>
+                <a href="#info">More Info</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <h1>Hubbardston FY26 Budget Proposal</h1>
-            <p>Building a stronger, fiscally responsible community. Explore the plan, key investments, and financial outlook.</p>
+    <!-- Town Administrator's Message -->
+    <section class="ta-message" id="message">
+        <div class="message-container">
+            <h1>Message from the Town Administrator</h1>
+            <p>Welcome to the FY26 Budget Proposal website. Our mission is to create a sustainable, forward-thinking budget that supports our community’s growth while maintaining fiscal responsibility.</p>
+            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
         </div>
-        <div class="hero-stats">
-            <div class="stat-card">
-                <h3>FY26 Total Revenue</h3>
-                <p class="stat-number" id="total-revenue">Loading...</p>
-            </div>
-            <div class="stat-card">
-                <h3>FY26 Total Expenditures</h3>
-                <p class="stat-number" id="total-expenditures">Loading...</p>
-            </div>
-        </div>
-    </header>
-
-    <!-- Budget Details Section -->
-    <section class="budget-details" id="budget">
-        <h2>FY26 Budget Overview</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>FY26 Proposed</th>
-                </tr>
-            </thead>
-            <tbody id="budget-table">
-                <!-- Data will be dynamically inserted here -->
-            </tbody>
-        </table>
     </section>
 
-    <!-- Key Initiatives Section -->
-    <section class="key-initiatives" id="initiatives">
-        <h2>Key Investments & Initiatives</h2>
-        <p>Hubbardston is making strategic investments in infrastructure, public safety, and technology to improve efficiency and service delivery.</p>
+    <!-- Revenue Section with Interactive Chart -->
+    <section class="budget-details" id="revenue">
+        <h2>Revenue Overview</h2>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Expenditures Section with Animated Stats -->
+    <section class="budget-details" id="expenditures">
+        <h2>Expenditures Breakdown</h2>
+        <p>Hover over a category to highlight key budget areas.</p>
+        <div class="expenditure-list">
+            <div class="exp-card" id="public-safety">Public Safety: $3.2M</div>
+            <div class="exp-card" id="education">Education: $5.5M</div>
+            <div class="exp-card" id="infrastructure">Infrastructure: $2.1M</div>
+        </div>
+    </section>
+
+    <!-- Capital Improvement Plan with Hover Effects -->
+    <section class="budget-details" id="capital">
+        <h2>Capital Improvement Plan</h2>
+        <div class="capital-projects">
+            <div class="project-card">New Fire Station - $1.5M</div>
+            <div class="project-card">Roadway Resurfacing - $2.3M</div>
+            <div class="project-card">Technology Upgrade - $800K</div>
+        </div>
+    </section>
+
+    <!-- More Information Section -->
+    <section class="info" id="info">
+        <h2>More Information</h2>
         <ul>
-            <li><strong>Infrastructure:</strong> Roadway improvements and municipal building upgrades.</li>
-            <li><strong>Public Safety:</strong> Enhanced funding for police and fire services.</li>
-            <li><strong>Technology:</strong> Digital transformation to streamline operations and engage residents.</li>
+            <li><a href="#">Budget Documents</a></li>
+            <li><a href="#">Financial Policies</a></li>
+            <li><a href="#">Community Engagement Sessions</a></li>
         </ul>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <h2>Get Involved</h2>
-        <p>Questions? Feedback? Reach out to the Town Administrator's office for more information on the FY26 budget proposal.</p>
+        <h2>Contact Us</h2>
         <p>Email: <a href="mailto:admin@hubbardstonma.gov">admin@hubbardstonma.gov</a></p>
         <p>Phone: (978) 928-1400 x200</p>
     </section>
@@ -80,5 +93,40 @@
     <footer>
         <p>&copy; 2025 Town of Hubbardston. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Animated Expenditures Section
+        document.querySelectorAll('.exp-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                gsap.to(card, { scale: 1.1, duration: 0.3 });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { scale: 1, duration: 0.3 });
+            });
+        });
+
+        // Revenue Chart
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Taxes', 'State Aid', 'Fees & Permits', 'Other Revenue'],
+                datasets: [{
+                    label: 'Revenue Sources ($M)',
+                    data: [9.2, 2.5, 1.8, 1.3],
+                    backgroundColor: ['#2a7d2e', '#1e5b24', '#ffd700', '#555']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
