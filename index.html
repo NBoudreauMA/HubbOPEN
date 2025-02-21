@@ -42,7 +42,15 @@
         </section>
 
         <!-- Revenue -->
-  <div class="overflow-x-auto">
+ <!-- Revenue -->
+<section id="revenue" class="p-6 bg-white rounded-lg shadow-lg">
+    <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Revenue Overview</button>
+    <div class="hidden mt-4 space-y-6">
+        <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
+
+        <!-- Revenue Table -->
+        <h2 class="text-lg font-semibold text-green-800">Major Revenue Categories</h2>
+        <div class="overflow-x-auto">
             <table class="w-full border-collapse border border-gray-300 text-sm">
                 <thead class="bg-green-700 text-white">
                     <tr>
@@ -109,6 +117,43 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Chart -->
+        <div class="mt-6">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+</section>
+
+<script>
+    function showTooltip(id) {
+        document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideTooltip(id) {
+        document.getElementById(id).classList.add("hidden");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctx = document.getElementById("revenueChart").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Tax Levy", "State Aid", "Local Receipts"],
+                datasets: [{
+                    label: "Revenue Sources ($M)",
+                    data: [9.2, 2.5, 1.8],
+                    backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+            }
+        });
+    });
+</script>
 
         <!-- Expenditures -->
         <section id="expenditures" class="p-6 bg-white rounded-lg shadow-lg">
