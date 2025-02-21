@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Toggle Section Functionality
     function toggleSection(element) {
         let content = element.nextElementSibling;
         content.style.display = content.style.display === "block" ? "none" : "block";
@@ -31,21 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 label: 'Expenditures ($M)',
                 data: [5.1, 12.8, 4.3, 2.6],
                 backgroundColor: ['#ff5733', '#ffd700', '#2a7d2e', '#1e5b24']
-            }]
-        }
-    });
-
-    // Capital Improvement Chart
-    const capCtx = document.getElementById('capitalChart').getContext('2d');
-    new Chart(capCtx, {
-        type: 'line',
-        data: {
-            labels: ['2023', '2024', '2025', '2026'],
-            datasets: [{
-                label: 'Capital Spending ($M)',
-                data: [1.2, 2.5, 3.0, 3.8],
-                borderColor: '#2a7d2e',
-                fill: false
             }]
         }
     });
