@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Thinner Navigation Bar */
+/* Sleek Modern Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -15,58 +15,64 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: #1e5b24;
-    padding: 0.5rem 1.5rem;
-    height: 50px;
+    background: rgba(30, 91, 36, 0.95); /* Slight transparency */
+    padding: 0.4rem 1.5rem;
+    height: 45px;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Remove black text header */
-.navbar .nav-title {
-    display: none;
+/* Navbar Logo */
+.nav-logo {
+    height: 35px; /* Slightly smaller */
+    width: auto;
 }
 
 /* Navbar Links */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 18px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.85rem;
     padding: 5px 10px;
-    transition: color 0.3s, transform 0.2s;
+    transition: color 0.3s, transform 0.2s, opacity 0.3s;
+    opacity: 0.9;
 }
 
 .nav-links a:hover {
     color: #ffd700;
+    opacity: 1;
     transform: scale(1.05);
 }
 
-/* Hero Section - Improved Design */
+/* Modern Hero Section */
 .hero {
-    background: linear-gradient(135deg, #2a7d2e, #1e5b24);
+    background: linear-gradient(135deg, #236c28, #1e5b24);
     color: white;
     text-align: center;
-    padding: 5rem 0 3rem 0; /* More padding to separate from navbar */
-    margin-top: 50px; /* Space below the navbar */
+    padding: 5rem 0 4rem;
+    margin-top: 45px; /* Adjust for thinner navbar */
     border-radius: 0 0 30px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.95;
 }
 
 /* Toggle Sections */
@@ -76,7 +82,7 @@ body {
     margin: 2rem auto;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 1rem;
 }
 
@@ -87,11 +93,12 @@ body {
     cursor: pointer;
     border-radius: 8px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .toggle-box:hover {
     background: #1e5b24;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .toggle-content {
