@@ -116,81 +116,91 @@ body {
     margin: 0 auto;
 }
 
-#revenueChart, #expenditureChart {
-    height: 300px !important;
-    max-height: 300px;
-    width: 100% !important;
-    margin: 20px 0;
+/* TA Message Styles */
+.ta-message {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
+.ta-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
 }
 
-th, td {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-td {
-    text-align: right;
-}
-
-td:first-child {
-    text-align: left;
-}
-
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--primary-color);
-        padding: 1rem;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-canvas {
-    max-width: 100%;
+.ta-seal {
+    width: 100px;
     height: auto;
-    margin: 1rem 0;
+    margin-right: 2rem;
 }
+
+.ta-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.ta-info p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.message-content {
+    line-height: 1.6;
+}
+
+.date {
+    margin-bottom: 2rem;
+}
+
+.greeting {
+    font-weight: 500;
+}
+
+.image-highlight {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.message-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.image-caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.highlight-box {
+    background: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.highlight-box h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.highlight-box p {
+    margin: 0;
+}
+
+.signature-block {
+    margin-top: 3rem;
+    border-top: 1px solid #eee;
