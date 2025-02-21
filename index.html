@@ -4,50 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget Portal</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900">
 
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="nav-logo">
-            <span class="nav-title">Hubbardston Budget Portal</span>
+    <!-- Navigation -->
+    <nav class="bg-green-800 text-white fixed top-0 w-full flex justify-between items-center px-6 py-2 shadow-md z-50">
+        <div class="flex items-center">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-8 mr-3">
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#message">TA Message</a></li>
-            <li><a href="#revenue">Revenue</a></li>
-            <li><a href="#expenditures">Expenditures</a></li>
-            <li><a href="#capital">Capital Plan</a></li>
-            <li><a href="#info">More Info</a></li>
+        <ul class="flex space-x-6 text-sm font-medium">
+            <li><a href="#message" class="hover:text-yellow-400">TA Message</a></li>
+            <li><a href="#revenue" class="hover:text-yellow-400">Revenue</a></li>
+            <li><a href="#expenditures" class="hover:text-yellow-400">Expenditures</a></li>
+            <li><a href="#capital" class="hover:text-yellow-400">Capital Plan</a></li>
+            <li><a href="#info" class="hover:text-yellow-400">More Info</a></li>
         </ul>
     </nav>
 
-    <div class="hero">
-        <h1>Welcome to Hubbardston's Budget Portal</h1>
-        <p>Your guide to understanding the town's financial outlook.</p>
-    </div>
+    <!-- Hero Section -->
+    <header class="bg-green-700 text-white text-center py-16 mt-12 shadow-lg rounded-b-xl">
+        <h1 class="text-4xl font-bold">Welcome to Hubbardston's Budget Portal</h1>
+        <p class="text-lg mt-2">Your guide to understanding the town's financial outlook.</p>
+    </header>
 
-    <section class="dashboard-section" id="revenue">
-        <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>Revenue Overview</h2>
+    <!-- TA Message Section -->
+    <section id="message" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-3 rounded-lg">Town Administrator's Message</button>
+        <div class="hidden mt-4">
+            <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
+            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
         </div>
-        <div class="toggle-content">
-            <p>This section outlines Hubbardston's revenue sources, including property taxes, state aid, and other local revenues.</p>
-            <div id="budget-analysis"></div> <!-- React Component Mounting Point -->
-            <div class="chart-container">
+    </section>
+
+    <!-- Revenue Section -->
+    <section id="revenue" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-3 rounded-lg">Revenue Overview</button>
+        <div class="hidden mt-4 space-y-6" id="revenue-content">
+            <p>The revenue sources include property taxes, state aid, and other local revenues.</p>
+            
+            <!-- React Component Mount -->
+            <div id="budget-analysis"></div>
+
+            <div class="mt-6">
                 <canvas id="revenueChart"></canvas>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Expenditures Section -->
+    <section id="expenditures" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-3 rounded-lg">Expenditure Overview</button>
+        <div class="hidden mt-4">
+            <p>Expenditures include public safety, education, public works, and general government services.</p>
+        </div>
+    </section>
+
+    <!-- Capital Improvement Plan Section -->
+    <section id="capital" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-3 rounded-lg">Capital Improvement Plan</button>
+        <div class="hidden mt-4">
+            <p>The Capital Improvement Plan (CIP) outlines long-term investments in town infrastructure and facilities.</p>
+        </div>
+    </section>
+
+    <!-- More Info Section -->
+    <section id="info" class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-3 rounded-lg">More Information</button>
+        <div class="hidden mt-4">
+            <ul class="list-disc pl-6 space-y-2">
+                <li><a href="#" class="text-green-700 hover:underline">Budget Documents</a></li>
+                <li><a href="#" class="text-green-700 hover:underline">Financial Policies</a></li>
+                <li><a href="#" class="text-green-700 hover:underline">Community Engagement Sessions</a></li>
+                <li><a href="#" class="text-green-700 hover:underline">Frequently Asked Questions</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="text-center text-white bg-green-800 py-4 mt-10">
         © 2025 Town of Hubbardston - Budget Portal
     </footer>
 
-    <script src="bundle.js"></script> <!-- React script bundle -->
-</body>
-</html>
+    <script>
+        function toggleSection(button) {
+            const content = button.nextElementSibling;
+            content.classList.toggle("hidden");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const BudgetAnalysis = () => {
+                return React.createElement(
+                    "div",
+                    { className: "p-4 bg-gray-50 rounded-lg shadow" },
+                    React.createElement("h2", { className: "text-xl font-bold mb-4" }, "Fiscal Year 2023-2026 Budget Overview"),
+                    React.createElement("p", null, "Tax levy grows from $8.05M in FY23 to $9.28M in FY26 due to Proposition 2.5 and new growth.")
+                );
+            };
+
+            ReactDOM.render(React.createElement(BudgetAnalysis), document.getElementById("budget-analysis"));
+
+            // Revenue Chart
+            const ctx = document.getElementById("revenueChart").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Taxes", "State Aid", "Fees & Permits", "Other Revenue"],
+                    datasets: [
+                        {
+                            label: "Revenue Sources ($M)",
+                            data: [9.2, 2.5, 1.8, 1.3],
+                            backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700", "#555"],
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                       
