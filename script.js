@@ -85,20 +85,33 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: ["General Gov", "Public Safety", "Education", "Public Works"],
             datasets: [{
-                label: "FY26 Budget",
+                label: "FY23 Actual",
+                data: [1150000, 2400000, 4800000, 1700000],
+                backgroundColor: "#2a7d2e"
+            }, {
+                label: "FY24 Actual",
+                data: [1180000, 2450000, 4900000, 1750000],
+                backgroundColor: "#1e5b24"
+            }, {
+                label: "FY25 Budget",
+                data: [1190000, 2480000, 4950000, 1780000],
+                backgroundColor: "#34d399"
+            }, {
+                label: "FY26 Proposed",
                 data: [1200000, 2500000, 5000000, 1800000],
-                backgroundColor: [
-                    "#2a7d2e",
-                    "#1e5b24",
-                    "#34d399",
-                    "#ffd700"
-                ]
+                backgroundColor: "#ffd700"
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             aspectRatio: 2,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
