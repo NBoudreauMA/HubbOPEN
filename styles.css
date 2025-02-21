@@ -1,91 +1,154 @@
-/* Global Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-color: #2a7d2e;
+    --secondary-color: #1e5b24;
+    --accent-color: #ffd700;
+    --text-color: #333;
+    --background-color: #f5f5f5;
 }
 
-/* Navbar - Now Slimmer & Adjusted */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
 .navbar {
+    background-color: var(--primary-color);
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(30, 91, 36, 0.95);
-    padding: 10px 15px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo img {
+    height: 50px;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 15px;
-    margin-right: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
 }
 
 .nav-links a {
-    text-decoration: none;
     color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 12px;
-    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ffd700;
+    color: var(--accent-color);
 }
 
-/* Hero Section - Bring Back Cool Look */
-.hero {
-    text-align: center;
-    padding: 7rem 0;
-    background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)),
-                url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
-                no-repeat center center;
-    background-size: cover;
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
     color: white;
-}
-
-/* Dashboard Sections */
-.dashboard-section {
-    width: 90%;
-    max-width: 900px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Section Buttons - Restore Previous Look */
-.toggle-box {
-    background: #2a7d2e;
-    color: white;
-    padding: 1rem;
-    font-size: 1.2rem;
-    border-radius: 10px;
+    font-size: 1.5rem;
     cursor: pointer;
-    display: block;
+}
+
+.hero {
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-section {
+    margin: 2rem auto;
+    max-width: 1200px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toggle-box {
     width: 100%;
-    transition: all 0.3s ease-in-out;
-    border: 2px solid transparent;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .toggle-box:hover {
-    background: #1e5b24;
-    border: 2px solid white;
+    background-color: var(--secondary-color);
 }
 
-/* Fix for Charts */
+.toggle-content {
+    padding: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--primary-color);
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+}
+
 canvas {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 20px auto;
+    margin: 1rem 0;
 }
