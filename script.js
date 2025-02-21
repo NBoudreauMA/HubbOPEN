@@ -1,17 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Animated Expenditures Section
-    document.querySelectorAll('.exp-card').forEach(card => {
-        card.addEventListener('mouseover', () => {
-            gsap.to(card, { scale: 1.1, duration: 0.3 });
-        });
-        card.addEventListener('mouseleave', () => {
-            gsap.to(card, { scale: 1, duration: 0.3 });
-        });
-    });
-
     // Revenue Chart
     const ctx = document.getElementById('revenueChart').getContext('2d');
-    const revenueChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Taxes', 'State Aid', 'Fees & Permits', 'Other Revenue'],
@@ -23,12 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                y: { beginAtZero: true }
             }
         }
+    });
+
+    // Animated Cards
+    document.querySelectorAll('.dashboard-section').forEach(section => {
+        section.addEventListener('mouseover', () => {
+            gsap.to(section, { scale: 1.02, duration: 0.3 });
+        });
+        section.addEventListener('mouseleave', () => {
+            gsap.to(section, { scale: 1, duration: 0.3 });
+        });
     });
 });
