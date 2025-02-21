@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         navLinks.classList.toggle("active");
     });
 
-    // 📌 Section Toggles (Ensure All Start Closed)
+    // 📌 Section Toggles - All Start Closed
     document.querySelectorAll(".toggle-content").forEach(content => {
         content.style.display = "none";
     });
@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 📌 Revenue Chart
+    // 📌 FY26 Revenue Chart Fix
     const revenueCtx = document.getElementById("revenueChart").getContext("2d");
     new Chart(revenueCtx, {
         type: "bar",
         data: {
             labels: ["Tax Levy", "State Aid", "Local Receipts"],
             datasets: [{
-                label: "Revenue ($M)",
-                data: [9.2, 2.5, 1.8], // Updated values
+                label: "Revenue Sources ($M)",
+                data: [9.2, 2.5, 1.8],
                 backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
             }]
         },
