@@ -1,50 +1,34 @@
-document.addEventListener("DOMContentLoaded", function() {
-    function fetchAndDisplayData(csvFile, elementId, columnIndex) {
-        fetch(csvFile)
-            .then(response => response.text())
-            .then(text => {
-                const lines = text.split("\n").filter(line => line.trim() !== ""); // Remove empty lines
-                const headers = lines[0].split(","); // Get column headers
-                const lastRow = lines[lines.length - 1].split(",");
+document.addEventListener("DOMContentLoaded", function () {
+    // Animated Expenditures Section
+    document.querySelectorAll('.exp-card').forEach(card => {
+        card.addEventListener('mouseover', () => {
+            gsap.to(card, { scale: 1.1, duration: 0.3 });
+        });
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, { scale: 1, duration: 0.3 });
+        });
+    });
 
-                let value = lastRow[columnIndex].replace(/[$,]/g, ""); // Remove dollar signs and commas
-
-                if (!isNaN(value) && value.trim() !== "") {
-                    document.getElementById(elementId).textContent = `$${parseInt(value).toLocaleString()}`;
-                } else {
-                    document.getElementById(elementId).textContent = "Data Error";
-                    console.error(`Parsing error in ${csvFile} for column: ${headers[columnIndex]}`);
+    // Revenue Chart
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Taxes', 'State Aid', 'Fees & Permits', 'Other Revenue'],
+            datasets: [{
+                label: 'Revenue Sources ($M)',
+                data: [9.2, 2.5, 1.8, 1.3],
+                backgroundColor: ['#2a7d2e', '#1e5b24', '#ffd700', '#555']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
-            })
-            .catch(error => console.error(`Error fetching ${csvFile}:`, error));
-    }
-
-    fetchAndDisplayData("revenue_data.csv", "total-revenue", 4); // Adjust column number if needed
-    fetchAndDisplayData("expenditures_cleaned.csv", "total-expenditures", 6); // Adjust column number if needed
-
-    // Fetch and display budget breakdown table
-    fetch("expenditures_cleaned.csv")
-        .then(response => response.text())
-        .then(text => {
-            const lines = text.split("\n").slice(1).filter(line => line.trim() !== "");
-            let tableContent = "";
-
-            lines.forEach(line => {
-                const cols = line.split(",");
-                if (cols.length > 6) {
-                    let category = cols[0].trim();
-                    let amount = cols[6].replace(/[$,]/g, ""); // Remove formatting
-
-                    if (!isNaN(amount) && amount.trim() !== "") {
-                        tableContent += `<tr><td>${category}</td><td>$${parseInt(amount).toLocaleString()}</td></tr>`;
-                    } else {
-                        tableContent += `<tr><td>${category}</td><td>Error</td></tr>`;
-                        console.error(`Data issue in expenditures_cleaned.csv: ${cols}`);
-                    }
-                }
-            });
-
-            document.getElementById("budget-table").innerHTML = tableContent;
-        })
-        .catch(error => console.error("Error fetching budget data:", error));
+            }
+        }
+    });
 });
