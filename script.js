@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            aspectRatio: 2,
+            aspectRatio: 3,
             layout: {
                 padding: {
                     top: 10,
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            aspectRatio: 2,
+            aspectRatio: 3,
             layout: {
                 padding: {
                     top: 10,
