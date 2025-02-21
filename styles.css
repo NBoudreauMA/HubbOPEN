@@ -1,28 +1,23 @@
-/* Global Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
-
-/* Navbar */
+/* Navbar - Slimmer & Positioned Higher */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(30, 91, 36, 0.95);
-    padding: 10px 20px;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
+    background: rgba(30, 91, 36, 0.95);
+    padding: 8px 15px;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    margin-right: 20px;
 }
 
 .nav-links a {
@@ -30,6 +25,12 @@ body {
     color: white;
     font-weight: 600;
     font-size: 0.9rem;
+    padding: 8px 12px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #ffd700;
 }
 
 .menu-toggle {
@@ -47,15 +48,18 @@ body {
     }
 }
 
-/* Hero Section */
+/* Hero Section - Prevent Navbar Overlap */
 .hero {
     text-align: center;
-    padding: 6rem 0;
-    background: url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') center/cover no-repeat;
+    padding: 7rem 0; /* Increased padding to push content down */
+    background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)),
+                url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
+                no-repeat center center;
+    background-size: cover;
     color: white;
 }
 
-/* Sections */
+/* Dashboard Sections */
 .dashboard-section {
     width: 90%;
     max-width: 900px;
@@ -63,6 +67,14 @@ body {
     background: white;
     border-radius: 12px;
     padding: 2rem;
+}
+
+/* Fix for Revenue Chart */
+canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Keeps it centered & prevents it from falling */
 }
 
 /* Section Buttons */
@@ -75,4 +87,11 @@ body {
     cursor: pointer;
     display: block;
     width: 100%;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.toggle-box:hover {
+    background: #1e5b24;
+    border: 2px solid white;
 }
