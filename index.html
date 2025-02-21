@@ -14,81 +14,112 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7f9;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Navigation Bar */
         .navbar {
-            background: linear-gradient(135deg, #2a7d2e, #1e5b24);
-            padding: 1rem;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .navbar a:hover {
-            color: #ffd700;
-        }
-        .hero {
-            text-align: center;
-            background: linear-gradient(135deg, #248024, #196d19);
-            color: white;
-            padding: 3rem 1rem;
-            margin-top: 60px;
-            border-radius: 0 0 50px 50px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .toggle-box {
-            background: white;
-            padding: 1rem;
-            margin: 10px auto;
-            cursor: pointer;
-            font-size: 1.2rem;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            transition: all 0.3s;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #2a7d2e, #1e5b24);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .toggle-box:hover {
-            background: #eaf4e2;
+
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
-        .toggle-content {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-in;
-            padding: 0 1rem;
+
+        .nav-logo {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
         }
-        .chart-container {
-            max-width: 800px;
-            margin: auto;
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
         }
-        .table-container {
-            overflow-x: auto;
-            max-width: 800px;
-            margin: auto;
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 12px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Menu Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.9);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="#home">Home</a>
-        <a href="#message">TA Message</a>
-        <a href="#revenue">Revenue</a>
-        <a href="#expenditures">Expenditures</a>
-        <a href="#capital">Capital Improvement</a>
-        <a href="#info">More Info</a>
+        <div class="logo-container">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="nav-logo">
+            <span class="nav-title">Hubbardston Budget Portal</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#message">TA Message</a></li>
+            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#expenditures">Expenditures</a></li>
+            <li><a href="#capital">Capital Improvement</a></li>
+            <li><a href="#info">More Info</a></li>
+        </ul>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
     </nav>
 
     <div class="hero">
@@ -98,7 +129,6 @@
     <section class="dashboard-section" id="message">
         <div class="toggle-box" onclick="toggleSection(this)">
             <h2>Town Administrator's Message</h2>
-            <span class="toggle-icon">+</span>
         </div>
         <div class="toggle-content">
             <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
@@ -109,22 +139,10 @@
     <section class="dashboard-section" id="revenue">
         <div class="toggle-box" onclick="toggleSection(this)">
             <h2>Revenue Overview</h2>
-            <span class="toggle-icon">+</span>
         </div>
         <div class="toggle-content">
             <div class="chart-container">
                 <canvas id="revenueChart"></canvas>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Source</th>
-                            <th>FY26 Projected ($M)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="revenue-table"></tbody>
-                </table>
             </div>
         </div>
     </section>
@@ -132,22 +150,10 @@
     <section class="dashboard-section" id="capital">
         <div class="toggle-box" onclick="toggleSection(this)">
             <h2>Capital Improvement Plan</h2>
-            <span class="toggle-icon">+</span>
         </div>
         <div class="toggle-content">
             <div class="chart-container">
                 <canvas id="capitalChart"></canvas>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Project</th>
-                            <th>FY26 Budget ($M)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="capital-table"></tbody>
-                </table>
             </div>
         </div>
     </section>
@@ -155,7 +161,6 @@
     <section class="dashboard-section" id="info">
         <div class="toggle-box" onclick="toggleSection(this)">
             <h2>More Information</h2>
-            <span class="toggle-icon">+</span>
         </div>
         <div class="toggle-content">
             <ul>
@@ -172,19 +177,10 @@
     </footer>
 
     <script>
-        function toggleSection(element) {
-            const content = element.nextElementSibling;
-            const icon = element.querySelector(".toggle-icon");
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-                gsap.to(content, { opacity: 0, duration: 0.3 });
-                icon.textContent = "+";
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                gsap.to(content, { opacity: 1, duration: 0.3 });
-                icon.textContent = "−";
-            }
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('show');
         }
     </script>
+
 </body>
 </html>
