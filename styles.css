@@ -15,28 +15,10 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: linear-gradient(135deg, #2a7d2e, #1e5b24);
+    background: #1e5b24;
     padding: 1rem 2rem;
     z-index: 1000;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: color 0.3s, transform 0.2s;
-}
-
-.nav-links a:hover {
-    color: #ffd700;
-    transform: scale(1.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Hero Section */
@@ -44,11 +26,21 @@ body {
     background: linear-gradient(135deg, #2a7d2e, #1e5b24);
     color: white;
     text-align: center;
-    padding: 3rem 0;
-    border-radius: 0 0 50px 50px;
+    padding: 4rem 0;
+    border-radius: 0 0 30px 30px;
 }
 
 /* Toggle Sections */
+.dashboard-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
 .toggle-box {
     background: #2a7d2e;
     color: white;
@@ -56,22 +48,19 @@ body {
     cursor: pointer;
     border-radius: 8px;
     font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.toggle-box:hover {
+    background: #1e5b24;
 }
 
 .toggle-content {
     display: none;
     padding: 1rem;
-    background: white;
+    background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
-}
-
-/* Chart Containers */
-.chart-container {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
 }
 
 /* Footer */
