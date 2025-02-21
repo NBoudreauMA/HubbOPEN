@@ -339,3 +339,37 @@ canvas {
     height: auto;
     margin: 1rem 0;
 }
+.capital-message {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.capital-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.key-highlight-box {
+    background: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.key-highlight-box h4 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.capital-strategy ul, 
+.funding-sources ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.capital-strategy li,
+.funding-sources li {
+    margin-bottom: 0.5rem;
+}
