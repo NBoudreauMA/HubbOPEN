@@ -129,26 +129,41 @@
         </div>
     </section>
 
-    <section class="dashboard-section" id="expenditures">
+    <section class="dashboard-section" id="capital">
         <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>Expenditures Breakdown</h2>
+            <h2>Capital Improvement Plan</h2>
             <span class="toggle-icon">+</span>
         </div>
         <div class="toggle-content">
             <div class="chart-container">
-                <canvas id="expendituresChart"></canvas>
+                <canvas id="capitalChart"></canvas>
             </div>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Category</th>
-                            <th>FY26 Proposed ($M)</th>
+                            <th>Project</th>
+                            <th>FY26 Budget ($M)</th>
                         </tr>
                     </thead>
-                    <tbody id="expenditures-table"></tbody>
+                    <tbody id="capital-table"></tbody>
                 </table>
             </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section" id="info">
+        <div class="toggle-box" onclick="toggleSection(this)">
+            <h2>More Information</h2>
+            <span class="toggle-icon">+</span>
+        </div>
+        <div class="toggle-content">
+            <ul>
+                <li><a href="#">Budget Documents</a></li>
+                <li><a href="#">Financial Policies</a></li>
+                <li><a href="#">Community Engagement Sessions</a></li>
+                <li><a href="#">Frequently Asked Questions</a></li>
+            </ul>
         </div>
     </section>
 
