@@ -236,8 +236,8 @@ body {
 }
 
 #revenueChart, #expenditureChart {
-    height: 300px !important;
-    max-height: 300px;
+    height: 200px !important;
+    max-height: 200px;
     width: 100% !important;
     margin: 20px 0;
 }
@@ -275,22 +275,6 @@ footer {
     margin-top: 2rem;
 }
 
-/* Message content styles */
-.message-content ul {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-}
-
-.message-content li {
-    margin-bottom: 0.5rem;
-}
-
-.message-content h3 {
-    color: var(--primary-color);
-    margin: 2rem 0 1rem 0;
-}
-
-/* Mobile responsiveness */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -347,32 +331,6 @@ footer {
     
     .signature-left {
         text-align: center;
-    }
-
-    table {
-        font-size: 0.9rem;
-    }
-
-    th, td {
-        padding: 0.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        padding: 4rem 1rem;
-    }
-
-    .hero h1 {
-        font-size: 1.75rem;
-    }
-
-    .toggle-content {
-        padding: 1rem;
-    }
-
-    .ta-message {
-        padding: 10px;
     }
 }
 
