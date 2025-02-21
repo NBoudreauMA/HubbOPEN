@@ -16,16 +16,15 @@ body {
     top: 0;
     width: 100%;
     background: #1e5b24;
-    padding: 0.5rem 1.5rem;  /* Reduced padding for thinner navbar */
-    height: 50px;  /* Reduced height */
+    padding: 0.5rem 1.5rem;
+    height: 50px;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Logo */
-.nav-logo {
-    height: 40px; /* Adjusted to match thinner navbar */
-    width: auto;
+/* Remove black text header */
+.navbar .nav-title {
+    display: none;
 }
 
 /* Navbar Links */
@@ -39,7 +38,7 @@ body {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    font-size: 0.9rem;  /* Slightly smaller font for better fit */
+    font-size: 0.9rem;
     padding: 5px 10px;
     transition: color 0.3s, transform 0.2s;
 }
@@ -49,13 +48,25 @@ body {
     transform: scale(1.05);
 }
 
-/* Hero Section */
+/* Hero Section - Improved Design */
 .hero {
     background: linear-gradient(135deg, #2a7d2e, #1e5b24);
     color: white;
     text-align: center;
-    padding: 3rem 0;
+    padding: 5rem 0 3rem 0; /* More padding to separate from navbar */
+    margin-top: 50px; /* Space below the navbar */
     border-radius: 0 0 30px 30px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
 }
 
 /* Toggle Sections */
