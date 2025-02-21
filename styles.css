@@ -1,8 +1,10 @@
-/* Base styles with Green Theme */
+/* Base styles with Enhanced Modern UI */
 :root {
   --primary-color: #2a7d2e;
+  --secondary-color: #1e5b24;
   --text-color: #222;
   --background-light: #f9f9f9;
+  --accent-color: #ffd700;
   --spacing: 2rem;
 }
 
@@ -25,23 +27,43 @@ body {
   padding: 0 var(--spacing);
 }
 
-/* Header */
-.site-header {
+/* Navigation Bar */
+.navbar {
   background: var(--primary-color);
   color: white;
-  padding: var(--spacing) 0;
-  text-align: center;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
 }
 
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Hero Section */
 .hero {
-  background: var(--background-light);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
   padding: calc(var(--spacing) * 2) 0;
   text-align: center;
+  border-radius: 0 0 50px 50px;
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  color: var(--primary-color);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
 .hero-stats {
@@ -54,10 +76,15 @@ body {
 .stat-card {
   background: white;
   padding: var(--spacing);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
-  width: 200px;
+  width: 220px;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
 }
 
 .stat-card h3 {
@@ -82,7 +109,7 @@ body {
 
 .budget-details th, .budget-details td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 12px;
   text-align: left;
 }
 
@@ -115,6 +142,7 @@ body {
   padding: var(--spacing);
   background: #d4edd4;
   text-align: center;
+  border-radius: 10px;
 }
 
 .contact h2 {
