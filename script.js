@@ -19,18 +19,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }]
         }
     });
-
-    // Expenditure Chart
-    const expCtx = document.getElementById('expenditureChart').getContext('2d');
-    new Chart(expCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Public Safety', 'Education', 'Public Works', 'General Government'],
-            datasets: [{
-                label: 'Expenditures ($M)',
-                data: [5.1, 12.8, 4.3, 2.6],
-                backgroundColor: ['#ff5733', '#ffd700', '#2a7d2e', '#1e5b24']
-            }]
-        }
-    });
 });
