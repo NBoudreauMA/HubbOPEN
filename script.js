@@ -1,22 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    function toggleSection(element) {
-        let content = element.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
+    
+    // 📌 Mobile Menu Toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+
+    // 📌 Section Toggle Functionality
+    function toggleSection(button) {
+        const content = button.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
     }
 
-    window.toggleSection = toggleSection;
-
-    // Revenue Chart
-    const revCtx = document.getElementById('revenueChart').getContext('2d');
-    new Chart(revCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Taxes', 'State Aid', 'Fees & Permits', 'Other Revenue'],
-            datasets: [{
-                label: 'Revenue Sources ($M)',
-                data: [9.2, 2.5, 1.8, 1.3],
-                backgroundColor: ['#2a7d2e', '#1e5b24', '#ffd700', '#555']
-            }]
-        }
+    const toggleButtons = document.querySelectorAll(".toggle-box");
+    toggleButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            toggleSection(this);
+        });
     });
+
 });
