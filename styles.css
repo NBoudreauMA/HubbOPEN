@@ -57,7 +57,6 @@ body {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    aria-label: "Toggle Menu";
 }
 
 .hero {
@@ -69,26 +68,44 @@ body {
     color: white;
     text-align: center;
     padding: 6rem 2rem;
-    position: relative;
     margin-bottom: 2rem;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+/* Ensure the button stays inside the section and is centered */
+.dashboard-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    margin: 0 auto;
+/* Align buttons properly */
+.toggle-box {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
 }
 
-.highlight-box:hover, .timeline-card:hover {
-    transform: translateY(-5px);
-    transition: 0.3s ease-in-out;
+.toggle-box:hover {
+    background-color: var(--secondary-color);
+}
+
+.toggle-content {
+    padding: 1.5rem;
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -117,6 +134,10 @@ body {
 
     .hero p {
         font-size: 1rem;
+    }
+
+    .dashboard-section {
+        width: 95%;
     }
 }
 
