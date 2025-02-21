@@ -42,38 +42,73 @@
         </section>
 
         <!-- Revenue -->
-        <section id="revenue" class="p-6 bg-white rounded-lg shadow-lg">
-            <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Revenue Overview</button>
-            <div class="hidden mt-4 space-y-6">
-                <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-
-                <!-- Revenue Table -->
-                <h2 class="text-lg font-semibold text-green-800">Major Revenue Categories</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-300 text-sm">
-                        <thead class="bg-green-700 text-white">
-                            <tr>
-                                <th class="border border-gray-300 p-2">Category</th>
-                                <th class="border border-gray-300 p-2">FY23</th>
-                                <th class="border border-gray-300 p-2">FY24</th>
-                                <th class="border border-gray-300 p-2">FY25</th>
-                                <th class="border border-gray-300 p-2">FY26</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-gray-50">
-                            <tr><td class="border p-2">Tax Levy</td><td class="border p-2">$8,052,778</td><td class="border p-2">$8,425,343</td><td class="border p-2">$8,852,568</td><td class="border p-2">$9,276,259</td></tr>
-                            <tr><td class="border p-2">State Aid</td><td class="border p-2">$668,674</td><td class="border p-2">$682,452</td><td class="border p-2">$711,871</td><td class="border p-2">$730,906</td></tr>
-                            <tr><td class="border p-2">Local Receipts</td><td class="border p-2">$1,364,392</td><td class="border p-2">$1,478,687</td><td class="border p-2">$1,502,964</td><td class="border p-2">$1,619,684</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Chart -->
-                <div class="mt-6">
-                    <canvas id="revenueChart"></canvas>
-                </div>
-            </div>
-        </section>
+  <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 text-sm">
+                <thead class="bg-green-700 text-white">
+                    <tr>
+                        <th class="border border-gray-300 p-2">Revenue Source</th>
+                        <th class="border border-gray-300 p-2">FY23</th>
+                        <th class="border border-gray-300 p-2">FY24</th>
+                        <th class="border border-gray-300 p-2">FY25</th>
+                        <th class="border border-gray-300 p-2">FY26</th>
+                        <th class="border border-gray-300 p-2">Explanation</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-50">
+                    <tr>
+                        <td class="border p-2 flex items-center">
+                            Tax Levy
+                            <span class="ml-2 text-blue-600 cursor-pointer" 
+                                  onmouseover="showTooltip('taxTooltip')" 
+                                  onmouseout="hideTooltip('taxTooltip')">ⓘ</span>
+                        </td>
+                        <td class="border p-2">$8,052,778</td>
+                        <td class="border p-2">$8,425,343</td>
+                        <td class="border p-2">$8,852,568</td>
+                        <td class="border p-2">$9,276,259</td>
+                        <td class="border p-2">
+                            <div id="taxTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
+                                The **Tax Levy** is the largest source of revenue and comes from property taxes. It increases annually due to Proposition 2.5, which limits tax increases but allows for new growth adjustments.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border p-2 flex items-center">
+                            State Aid
+                            <span class="ml-2 text-blue-600 cursor-pointer" 
+                                  onmouseover="showTooltip('stateAidTooltip')" 
+                                  onmouseout="hideTooltip('stateAidTooltip')">ⓘ</span>
+                        </td>
+                        <td class="border p-2">$668,674</td>
+                        <td class="border p-2">$682,452</td>
+                        <td class="border p-2">$711,871</td>
+                        <td class="border p-2">$730,906</td>
+                        <td class="border p-2">
+                            <div id="stateAidTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
+                                **State Aid** consists of government funding to support education, public safety, and general government functions. The largest portion is **Unrestricted General Government Aid (UGGA)**.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border p-2 flex items-center">
+                            Local Receipts
+                            <span class="ml-2 text-blue-600 cursor-pointer" 
+                                  onmouseover="showTooltip('localReceiptsTooltip')" 
+                                  onmouseout="hideTooltip('localReceiptsTooltip')">ⓘ</span>
+                        </td>
+                        <td class="border p-2">$1,364,392</td>
+                        <td class="border p-2">$1,478,687</td>
+                        <td class="border p-2">$1,502,964</td>
+                        <td class="border p-2">$1,619,684</td>
+                        <td class="border p-2">
+                            <div id="localReceiptsTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
+                                **Local Receipts** include motor vehicle excise taxes, permit fees, fines, and investment income. This revenue fluctuates based on economic conditions and policy changes.
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- Expenditures -->
         <section id="expenditures" class="p-6 bg-white rounded-lg shadow-lg">
