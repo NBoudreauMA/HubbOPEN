@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubbardston Budget Portal</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -23,7 +24,6 @@
             <li><a href="#capital">Capital Plan</a></li>
             <li><a href="#info">More Info</a></li>
         </ul>
-        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
     </nav>
 
     <div class="hero">
@@ -31,64 +31,16 @@
         <p>Your guide to understanding the town's financial outlook.</p>
     </div>
 
-    <section class="dashboard-section" id="message">
-        <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>Town Administrator's Message</h2>
-        </div>
-        <div class="toggle-content">
-            <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
-            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
-        </div>
-    </section>
-
     <section class="dashboard-section" id="revenue">
         <div class="toggle-box" onclick="toggleSection(this)">
             <h2>Revenue Overview</h2>
         </div>
         <div class="toggle-content">
             <p>This section outlines Hubbardston's revenue sources, including property taxes, state aid, and other local revenues.</p>
+            <div id="budget-analysis"></div> <!-- React Component Mounting Point -->
             <div class="chart-container">
                 <canvas id="revenueChart"></canvas>
             </div>
-        </div>
-    </section>
-
-    <section class="dashboard-section" id="expenditures">
-        <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>Expenditure Overview</h2>
-        </div>
-        <div class="toggle-content">
-            <p>Hubbardston's expenditures include public safety, education, public works, and general government services.</p>
-            <div class="chart-container">
-                <canvas id="expenditureChart"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <section class="dashboard-section" id="capital">
-        <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>Capital Improvement Plan</h2>
-        </div>
-        <div class="toggle-content">
-            <p>The Capital Improvement Plan (CIP) outlines long-term investments in town infrastructure and facilities.</p>
-            <div class="chart-container">
-                <canvas id="capitalChart"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <section class="dashboard-section" id="info">
-        <div class="toggle-box" onclick="toggleSection(this)">
-            <h2>More Information</h2>
-        </div>
-        <div class="toggle-content">
-            <ul>
-                <li><a href="#">Budget Documents</a></li>
-                <li><a href="#">Financial Policies</a></li>
-                <li><a href="#">Community Engagement Sessions</a></li>
-                <li><a href="#">Frequently Asked Questions</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
         </div>
     </section>
 
@@ -96,5 +48,6 @@
         © 2025 Town of Hubbardston - Budget Portal
     </footer>
 
+    <script src="bundle.js"></script> <!-- React script bundle -->
 </body>
 </html>
