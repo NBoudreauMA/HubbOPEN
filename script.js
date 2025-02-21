@@ -8,21 +8,31 @@ document.addEventListener("DOMContentLoaded", function () {
         navLinks.classList.toggle("active");
     });
 
-    // 📌 Section Toggle Functionality
-    function toggleSection(button) {
-        const content = button.nextElementSibling;
-        if (content.style.display === "block") {
-            content.style.display = "none";
-        } else {
-            content.style.display = "block";
-        }
-    }
+    // 📌 Section Toggles (Ensure All Start Closed)
+    document.querySelectorAll(".toggle-content").forEach(content => {
+        content.style.display = "none";
+    });
 
-    const toggleButtons = document.querySelectorAll(".toggle-box");
-    toggleButtons.forEach(button => {
+    document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
-            toggleSection(this);
+            const content = this.nextElementSibling;
+            content.style.display = (content.style.display === "block") ? "none" : "block";
         });
+    });
+
+    // 📌 Revenue Chart
+    const revenueCtx = document.getElementById("revenueChart").getContext("2d");
+    new Chart(revenueCtx, {
+        type: "bar",
+        data: {
+            labels: ["Tax Levy", "State Aid", "Local Receipts"],
+            datasets: [{
+                label: "Revenue ($M)",
+                data: [9.2, 2.5, 1.8], // Updated values
+                backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
     });
 
 });
