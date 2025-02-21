@@ -95,6 +95,15 @@ body {
 
 .toggle-content {
     padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#revenueChart {
+    height: 300px !important;
+    max-height: 300px;
+    width: 100% !important;
+    margin: 20px 0;
 }
 
 table {
