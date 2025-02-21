@@ -1,10 +1,9 @@
 /* Global Styles */
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f8f9fa;
 }
 
 /* Navbar */
@@ -12,13 +11,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(30, 91, 36, 0.95);
+    padding: 10px 20px;
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(30, 91, 36, 0.95);
-    padding: 10px 20px;
     z-index: 1000;
-    border-radius: 0 0 10px 10px;
 }
 
 .nav-links {
@@ -31,39 +29,17 @@ body {
     text-decoration: none;
     color: white;
     font-weight: 600;
-    font-size: 1rem;
-    padding: 10px 15px;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-links a:hover {
-    color: #ffd700;
+    font-size: 0.9rem;
 }
 
 .menu-toggle {
     display: none;
-    font-size: 1.8rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
-        background: rgba(30, 91, 36, 0.95);
-        position: absolute;
-        top: 50px;
-        right: 0;
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-    }
-
-    .nav-links.active {
-        display: flex;
     }
 
     .menu-toggle {
@@ -73,16 +49,10 @@ body {
 
 /* Hero Section */
 .hero {
-    position: relative;
     text-align: center;
     padding: 6rem 0;
-    background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)),
-                url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
-                no-repeat center center;
-    background-size: cover;
-    background-position: center;
+    background: url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') center/cover no-repeat;
     color: white;
-    border-radius: 0 0 30px 30px;
 }
 
 /* Sections */
@@ -92,7 +62,6 @@ body {
     margin: 2rem auto;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 2rem;
 }
 
@@ -101,25 +70,9 @@ body {
     background: #2a7d2e;
     color: white;
     padding: 1rem;
-    cursor: pointer;
-    border-radius: 10px;
-    font-weight: bold;
     font-size: 1.2rem;
-    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
     display: block;
     width: 100%;
-    border: none;
-    transition: background 0.3s ease-in-out;
-}
-
-.toggle-box:hover {
-    background: #1e5b24;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    color: white;
-    background: rgba(30, 91, 36, 0.9);
-    padding: 1rem;
 }
