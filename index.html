@@ -4,273 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget Portal</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-green-900 to-green-700 text-white fixed top-0 w-full flex justify-between items-center px-8 py-3 shadow-lg z-50 rounded-b-lg">
-        <div class="flex items-center">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10 mr-3">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10">
         </div>
-        <ul class="flex space-x-6 text-base font-semibold tracking-wide">
-            <li><a href="#message" class="hover:text-yellow-400">TA Message</a></li>
-            <li><a href="#revenue" class="hover:text-yellow-400">Revenue</a></li>
-            <li><a href="#expenditures" class="hover:text-yellow-400">Expenditures</a></li>
-            <li><a href="#capital" class="hover:text-yellow-400">Capital Plan</a></li>
-            <li><a href="#info" class="hover:text-yellow-400">More Info</a></li>
+        <button class="menu-toggle">☰</button>
+        <ul class="nav-links">
+            <li><a href="#message">TA Message</a></li>
+            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#expenditures">Expenditures</a></li>
+            <li><a href="#capital">Capital Plan</a></li>
+            <li><a href="#info">More Info</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-gradient-to-r from-green-800 to-green-600 text-white text-center py-16 mt-14 shadow-lg rounded-b-xl">
-        <h1 class="text-5xl font-extrabold">Hubbardston Budget Portal</h1>
-        <p class="text-xl mt-2 opacity-90">Your guide to understanding the town's financial outlook.</p>
+    <header class="hero">
+        <h1>Hubbardston Budget Portal</h1>
+        <p>Your guide to understanding the town's financial outlook.</p>
     </header>
 
     <!-- Budget Sections -->
-    <div class="max-w-5xl mx-auto space-y-6 mt-10">
-
-        <!-- TA Message -->
-        <section id="message" class="p-6 bg-white rounded-lg shadow-lg">
-            <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Town Administrator's Message</button>
-            <div class="hidden mt-4">
-                <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
-                <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
-            </div>
-        </section>
-
-        <!-- Revenue -->
- <!-- Revenue -->
-<section id="revenue" class="p-6 bg-white rounded-lg shadow-lg">
-    <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Revenue Overview</button>
-    <div class="hidden mt-4 space-y-6">
-        <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-
-        <!-- Revenue Table -->
-        <h2 class="text-lg font-semibold text-green-800">Major Revenue Categories</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-300 text-sm">
-                <thead class="bg-green-700 text-white">
-                    <tr>
-                        <th class="border border-gray-300 p-2">Revenue Source</th>
-                        <th class="border border-gray-300 p-2">FY23</th>
-                        <th class="border border-gray-300 p-2">FY24</th>
-                        <th class="border border-gray-300 p-2">FY25</th>
-                        <th class="border border-gray-300 p-2">FY26</th>
-                        <th class="border border-gray-300 p-2">Explanation</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-gray-50">
-                    <tr>
-                        <td class="border p-2 flex items-center">
-                            Tax Levy
-                            <span class="ml-2 text-blue-600 cursor-pointer" 
-                                  onmouseover="showTooltip('taxTooltip')" 
-                                  onmouseout="hideTooltip('taxTooltip')">ⓘ</span>
-                        </td>
-                        <td class="border p-2">$8,052,778</td>
-                        <td class="border p-2">$8,425,343</td>
-                        <td class="border p-2">$8,852,568</td>
-                        <td class="border p-2">$9,276,259</td>
-                        <td class="border p-2">
-                            <div id="taxTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
-                                The **Tax Levy** is the largest source of revenue and comes from property taxes. It increases annually due to Proposition 2.5, which limits tax increases but allows for new growth adjustments.
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="border p-2 flex items-center">
-                            State Aid
-                            <span class="ml-2 text-blue-600 cursor-pointer" 
-                                  onmouseover="showTooltip('stateAidTooltip')" 
-                                  onmouseout="hideTooltip('stateAidTooltip')">ⓘ</span>
-                        </td>
-                        <td class="border p-2">$668,674</td>
-                        <td class="border p-2">$682,452</td>
-                        <td class="border p-2">$711,871</td>
-                        <td class="border p-2">$730,906</td>
-                        <td class="border p-2">
-                            <div id="stateAidTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
-                                **State Aid** consists of government funding to support education, public safety, and general government functions. The largest portion is **Unrestricted General Government Aid (UGGA)**.
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="border p-2 flex items-center">
-                            Local Receipts
-                            <span class="ml-2 text-blue-600 cursor-pointer" 
-                                  onmouseover="showTooltip('localReceiptsTooltip')" 
-                                  onmouseout="hideTooltip('localReceiptsTooltip')">ⓘ</span>
-                        </td>
-                        <td class="border p-2">$1,364,392</td>
-                        <td class="border p-2">$1,478,687</td>
-                        <td class="border p-2">$1,502,964</td>
-                        <td class="border p-2">$1,619,684</td>
-                        <td class="border p-2">
-                            <div id="localReceiptsTooltip" class="hidden absolute bg-white p-3 rounded shadow-lg w-64 text-xs text-gray-800">
-                                **Local Receipts** include motor vehicle excise taxes, permit fees, fines, and investment income. This revenue fluctuates based on economic conditions and policy changes.
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="dashboard-section" id="message">
+        <button class="toggle-box" onclick="toggleSection(this)">Town Administrator's Message</button>
+        <div class="toggle-content">
+            <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
+            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
         </div>
+    </div>
 
-        <!-- Chart -->
-        <div class="mt-6">
+    <!-- Revenue Section -->
+    <div class="dashboard-section" id="revenue">
+        <button class="toggle-box" onclick="toggleSection(this)">Revenue Overview</button>
+        <div class="toggle-content">
+            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
             <canvas id="revenueChart"></canvas>
         </div>
     </div>
-</section>
 
-<script>
-    function showTooltip(id) {
-        document.getElementById(id).classList.remove("hidden");
-    }
-
-    function hideTooltip(id) {
-        document.getElementById(id).classList.add("hidden");
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const ctx = document.getElementById("revenueChart").getContext("2d");
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Tax Levy", "State Aid", "Local Receipts"],
-                datasets: [{
-                    label: "Revenue Sources ($M)",
-                    data: [9.2, 2.5, 1.8],
-                    backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { y: { beginAtZero: true } },
-            }
-        });
-    });
-</script>
-
-        <!-- Expenditures -->
-        <section id="expenditures" class="p-6 bg-white rounded-lg shadow-lg">
-            <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Expenditure Overview</button>
-            <div class="hidden mt-4">
-                <p>Expenditures include public safety, education, public works, and general government services.</p>
-            </div>
-        </section>
-
-        <!-- Capital Plan -->
-        <section id="capital" class="p-6 bg-white rounded-lg shadow-lg">
-            <button onclick="toggleSection(this)" class="w-full bg-green-700 text-white text-lg font-bold p-4 rounded-lg">Capital Improvement Plan</button>
-            <div class="hidden mt-4">
-                <p>The Capital Improvement Plan (CIP) outlines long-term investments in town infrastructure and facilities.</p>
-            </div>
-        </section>
-
-        <!-- More Info -->
-      <!-- More Info Section -->
-<div class="dashboard-section" id="info">
-    <button class="toggle-box" onclick="toggleSection(this)">More Information</button>
-    <div class="toggle-content">
-
-        <!-- Budget Documents -->
-        <h2 class="text-lg font-semibold text-green-800">Budget Documents Repository</h2>
-        <p>Access key financial reports, budget summaries, and capital plans.</p>
-        <ul>
-            <li><a href="#">FY26 Budget Report (PDF)</a></li>
-            <li><a href="#">Capital Improvement Plan</a></li>
-            <li><a href="#">Financial Policies</a></li>
-        </ul>
-
-        <!-- Budget Process Overview -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Understanding the Budget Process</h2>
-        <p>Learn how the town budget is developed and approved.</p>
-        <ol>
-            <li>Departmental Budget Requests</li>
-            <li>Town Administrator's Review</li>
-            <li>Public Hearings and Resident Feedback</li>
-            <li>Final Approval and Implementation</li>
-        </ol>
-        <p><a href="#">View Full Budget Timeline</a></p>
-
-        <!-- Public Engagement -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Get Involved</h2>
-        <p>We encourage residents to participate in the budget process.</p>
-        <ul>
-            <li><strong>Upcoming Meetings:</strong> <a href="#">View Calendar</a></li>
-            <li><strong>Submit Feedback:</strong> <a href="#">Budget Feedback Form</a></li>
-            <li><strong>Join Virtual Town Halls:</strong> <a href="#">Register for an Online Session</a></li>
-        </ul>
-
-        <!-- Educational Resources -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Educational Resources</h2>
-        <ul>
-            <li><a href="#">Budgeting 101: How Municipal Budgets Work</a></li>
-            <li><a href="#">Glossary of Budget Terms</a></li>
-            <li><a href="#">Frequently Asked Questions</a></li>
-        </ul>
-
-        <!-- Financial Transparency -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Financial Transparency</h2>
-        <p>Explore financial data with interactive tools and reports.</p>
-        <ul>
-            <li><a href="#">Revenue & Expenditure Dashboard</a></li>
-            <li><a href="#">Open Checkbook: View Town Spending</a></li>
-            <li><a href="#">Performance Metrics & Reports</a></li>
-        </ul>
-
-        <!-- Contact Information -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Contact Us</h2>
-        <p>For questions or more information, contact the Finance Department:</p>
-        <p><strong>Email:</strong> <a href="mailto:finance@hubbardstonma.gov">finance@hubbardstonma.gov</a></p>
-        <p><strong>Phone:</strong> 978-928-1400</p>
-        <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
-
-        <!-- Related Links -->
-        <h2 class="text-lg font-semibold text-green-800 mt-4">Related Links</h2>
-        <ul>
-            <li><a href="#">Massachusetts State Financial Reports</a></li>
-            <li><a href="#">Grant & Funding Opportunities</a></li>
-            <li><a href="#">Previous Budget Meeting Minutes</a></li>
-        </ul>
-
+    <!-- Expenditures Section -->
+    <div class="dashboard-section" id="expenditures">
+        <button class="toggle-box" onclick="toggleSection(this)">Expenditure Overview</button>
+        <div class="toggle-content">
+            <canvas id="expenditureChart"></canvas>
+        </div>
     </div>
-</div>
 
+    <!-- Capital Plan -->
+    <div class="dashboard-section" id="capital">
+        <button class="toggle-box" onclick="toggleSection(this)">Capital Improvement Plan</button>
+        <div class="toggle-content">
+            <p>The Capital Improvement Plan (CIP) outlines long-term investments in town infrastructure and facilities.</p>
+        </div>
+    </div>
 
-    <footer class="text-center text-white bg-green-900 py-4 mt-10">
-        © 2025 Town of Hubbardston - Budget Portal
+    <!-- More Info Section -->
+    <div class="dashboard-section" id="info">
+        <button class="toggle-box" onclick="toggleSection(this)">More Information</button>
+        <div class="toggle-content">
+
+            <!-- Budget Documents -->
+            <h2 class="text-lg font-semibold text-green-800">Budget Documents Repository</h2>
+            <p>Access key financial reports, budget summaries, and capital plans.</p>
+            <ul class="list-disc pl-6">
+                <li><a href="#">FY26 Budget Report (PDF)</a></li>
+                <li><a href="#">Capital Improvement Plan</a></li>
+                <li><a href="#">Financial Policies</a></li>
+            </ul>
+
+            <!-- Budget Process Overview -->
+            <h2 class="text-lg font-semibold text-green-800 mt-4">Understanding the Budget Process</h2>
+            <p>Learn how the town budget is developed and approved.</p>
+            <ul class="list-decimal pl-6">
+                <li>Departmental Budget Requests</li>
+                <li>Town Administrator's Review</li>
+                <li>Public Hearings and Resident Feedback</li>
+                <li>Final Approval and Implementation</li>
+            </ul>
+            <p><a href="#" class="text-blue-600 underline">View Full Budget Timeline</a></p>
+
+            <!-- Public Engagement -->
+            <h2 class="text-lg font-semibold text-green-800 mt-4">Get Involved</h2>
+            <p>We encourage residents to participate in the budget process.</p>
+            <ul class="list-disc pl-6">
+                <li><strong>Upcoming Meetings:</strong> <a href="#" class="text-blue-600 underline">View Calendar</a></li>
+                <li><strong>Submit Feedback:</strong> <a href="#" class="text-blue-600 underline">Budget Feedback Form</a></li>
+                <li><strong>Join Virtual Town Halls:</strong> <a href="#" class="text-blue-600 underline">Register for an Online Session</a></li>
+            </ul>
+
+            <!-- Educational Resources -->
+            <h2 class="text-lg font-semibold text-green-800 mt-4">Educational Resources</h2>
+            <ul class="list-disc pl-6">
+                <li><a href="#" class="text-blue-600 underline">Budgeting 101: How Municipal Budgets Work</a></li>
+                <li><a href="#" class="text-blue-600 underline">Glossary of Budget Terms</a></li>
+                <li><a href="#" class="text-blue-600 underline">Frequently Asked Questions</a></li>
+            </ul>
+
+            <!-- Financial Transparency -->
+            <h2 class="text-lg font-semibold text-green-800 mt-4">Financial Transparency</h2>
+            <p>Explore financial data with interactive tools and reports.</p>
+            <ul class="list-disc pl-6">
+                <li><a href="#" class="text-blue-600 underline">Revenue & Expenditure Dashboard</a></li>
+                <li><a href="#" class="text-blue-600 underline">Open Checkbook: View Town Spending</a></li>
+                <li><a href="#" class="text-blue-600 underline">Performance Metrics & Reports</a></li>
+            </ul>
+
+            <!-- Contact Information -->
+            <h2 class="text-lg font-semibold text-green-800 mt-4">Contact Us</h2>
+            <p>For questions or more information, contact the Finance Department:</p>
+            <p><strong>Email:</strong> <a href="mailto:finance@hubbardstonma.gov" class="text-blue-600 underline">finance@hubbardstonma.gov</a></p>
+            <p><strong>Phone:</strong> 978-928-1400</p>
+            <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Town of Hubbardston - Budget Portal</p>
     </footer>
 
-    <script>
-        function toggleSection(button) {
-            const content = button.nextElementSibling;
-            content.classList.toggle("hidden");
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const ctx = document.getElementById("revenueChart").getContext("2d");
-            new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["Tax Levy", "State Aid", "Local Receipts"],
-                    datasets: [{
-                        label: "Revenue Sources ($M)",
-                        data: [9.2, 2.5, 1.8],
-                        backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true } },
-                }
-            });
-        });
-    </script>
 </body>
 </html>
