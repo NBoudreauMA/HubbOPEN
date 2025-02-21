@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 📌 FY26 Revenue Chart Fix
+    // 📌 Revenue Chart Fix
     const revenueCtx = document.getElementById("revenueChart").getContext("2d");
     new Chart(revenueCtx, {
         type: "bar",
@@ -32,7 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
             }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
     });
 
 });
