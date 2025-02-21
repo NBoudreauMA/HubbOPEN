@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Sleek Modern Navbar */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -15,20 +15,13 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(30, 91, 36, 0.95); /* Slight transparency */
+    background: rgba(30, 91, 36, 0.95);
     padding: 0.4rem 1.5rem;
     height: 45px;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Logo */
-.nav-logo {
-    height: 35px; /* Slightly smaller */
-    width: auto;
-}
-
-/* Navbar Links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -51,22 +44,19 @@ body {
     transform: scale(1.05);
 }
 
-/* Modern Hero Section */
+/* Hero */
 .hero {
     background: linear-gradient(135deg, #236c28, #1e5b24);
     color: white;
     text-align: center;
     padding: 5rem 0 4rem;
-    margin-top: 45px; /* Adjust for thinner navbar */
+    margin-top: 45px;
     border-radius: 0 0 30px 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero h1 {
     font-size: 2.4rem;
     font-weight: 700;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    letter-spacing: 0.5px;
 }
 
 .hero p {
@@ -75,7 +65,7 @@ body {
     opacity: 0.95;
 }
 
-/* Toggle Sections */
+/* Dashboard Sections */
 .dashboard-section {
     width: 90%;
     max-width: 800px;
@@ -93,12 +83,6 @@ body {
     cursor: pointer;
     border-radius: 8px;
     font-weight: bold;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.toggle-box:hover {
-    background: #1e5b24;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .toggle-content {
@@ -107,13 +91,4 @@ body {
     background: #f9f9f9;
     border-radius: 8px;
     margin-top: 10px;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #2a7d2e;
-    color: white;
-    margin-top: 2rem;
 }
