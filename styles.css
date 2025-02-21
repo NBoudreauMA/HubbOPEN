@@ -116,7 +116,6 @@ body {
     margin: 0 auto;
 }
 
-/* TA Message Styles */
 .ta-message {
     max-width: 900px;
     margin: 0 auto;
@@ -204,3 +203,181 @@ body {
 .signature-block {
     margin-top: 3rem;
     border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+.signature-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 600px;
+}
+
+.signature-left {
+    flex: 1;
+}
+
+.signature-photo {
+    margin-left: 2rem;
+}
+
+.ta-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.signature {
+    width: 200px;
+    height: auto;
+    margin: 1rem 0;
+}
+
+#revenueChart, #expenditureChart {
+    height: 300px !important;
+    max-height: 300px;
+    width: 100% !important;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+td {
+    text-align: right;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Message content styles */
+.message-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.message-content li {
+    margin-bottom: 0.5rem;
+}
+
+.message-content h3 {
+    color: var(--primary-color);
+    margin: 2rem 0 1rem 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--primary-color);
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .ta-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ta-seal {
+        margin: 0 0 1rem 0;
+    }
+
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .signature-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    
+    .signature-photo {
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .signature-left {
+        text-align: center;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .toggle-content {
+        padding: 1rem;
+    }
+
+    .ta-message {
+        padding: 10px;
+    }
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+}
