@@ -1,3 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubbardston Budget Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal">
+        </div>
+        <button class="menu-toggle">☰</button>
+        <ul class="nav-links">
+            <li><a href="#message">TA Message</a></li>
+            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#expenditures">Expenditures</a></li>
+            <li><a href="#capital">Capital Plan</a></li>
+            <li><a href="#info">More Info</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>FY26 Budget Proposal</h1>
+        <p>Comprehensive overview of Hubbardston's financial plan and strategic investments for Fiscal Year 2026.</p>
+    </header>
+
+    <div class="dashboard-section" id="message">
+        <button class="toggle-box">Town Administrator's Message</button>
+        <div class="toggle-content">
+            <div class="ta-message">
+                <div class="ta-header">
+                    <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Town Seal" class="ta-seal">
+                    <div class="ta-info">
+                        <h2>Office of the Town Administrator</h2>
+                        <p>2 Main Street, Unit 5</p>
+                        <p>Hubbardston, MA 01452</p>
+                    </div>
+                </div>
+                
+                <div class="message-content">
+                    <p class="date">February 21, 2025</p>
+                    
+                    <p class="greeting">Dear Residents of Hubbardston,</p>
+                    
+                    <p>I am pleased to present the Fiscal Year 2026 budget proposal for the Town of Hubbardston. This budget reflects our ongoing commitment to fiscal responsibility while investing in critical services and infrastructure that our community needs.</p>
+
+                    <div class="image-highlight">
+                        <img src="https://github.com/NBoudreauMA/Budget/blob/main/hubbardston_bg.jpg?raw=true" alt="Hubbardston Overview" class="message-image">
+                        <p class="image-caption">Downtown Hubbardston - A Community Moving Forward</p>
+                    </div>
+
+                    <h3>Budget Highlights</h3>
+                    <p>The FY26 budget totals $11.6 million, representing a 4.8% increase from FY25. Key priorities include:</p>
+                    <ul>
+                        <li>Public Safety Enhancement: Funding for additional police officer and fire equipment</li>
+                        <li>Infrastructure Investment: Road maintenance and facility improvements</li>
+                        <li>Education Excellence: Supporting our school district's strategic initiatives</li>
+                        <li>Environmental Stewardship: Investment in open space preservation</li>
+                    </ul>
+
+                    <div class="highlights-grid">
+                        <div class="highlight-box">
+                            <h4>Tax Impact</h4>
+                            <p>Average tax increase of $185 per household</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>State Aid</h4>
+                            <p>2.7% increase in state funding</p>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>Free Cash</h4>
+                            <p>$1.2M certified free cash</p>
+                        </div>
+                    </div>
+
+                    <p>Looking ahead, we face both challenges and opportunities. Rising costs in healthcare and utilities require careful financial planning. However, our strong financial position and growing commercial base provide stability for future investments.</p>
+
+                    <div class="signature-block">
+                        <div class="signature-content">
+                            <div class="signature-left">
+                                <p>Sincerely,</p>
+                                <img src="placeholder_signature.png" alt="Signature" class="signature">
+                                <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
+                            </div>
+                            <div class="signature-photo">
+                                <img src="https://media.licdn.com/dms/image/v2/D4E03AQEW5_btYizZyg/profile-displayphoto-shrink_400_400/B4EZSZ4lygHcAk-/0/1737748537895?e=1745452800&v=beta&t=5n-BU2cpUF2VlMHcmw69kzWMcGz5nIyrg2lcLkX8_00" alt="Town Administrator" class="ta-photo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-section" id="revenue">
+        <button class="toggle-box">Revenue Overview</button>
+        <div class="toggle-content">
+            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
+            <canvas id="revenueChart"></canvas>
+            <h3>Revenue Breakdown</h3>
+            <table>
+                <tr>
+                    <th>Account</th>
+                    <th>FY23 Actual</th>
+                    <th>FY24 Actual</th>
+                    <th>FY25 Budget</th>
+                    <th>FY26 Proposed</th>
+                </tr>
+                <tr>
+                    <td>Tax Levy</td>
+                    <td>$8,052,778</td>
+                    <td>$8,425,343</td>
+                    <td>$8,852,568</td>
+                    <td>$9,276,259</td>
+                </tr>
+                <tr>
+                    <td>State Aid</td>
+                    <td>$668,674</td>
+                    <td>$682,452</td>
+                    <td>$711,871</td>
+                    <td>$730,906</td>
+                </tr>
+                <tr>
+                    <td>Local Receipts</td>
+                    <td>$1,364,392</td>
+                    <td>$1,478,687</td>
+                    <td>$1,502,964</td>
+                    <td>$1,619,684</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-section" id="expenditures">
+        <button class="toggle-box">Expenditure Overview</button>
+        <div class="toggle-content">
+            <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
+            <canvas id="expenditureChart"></canvas>
+            <h3>Expenditure Breakdown</h3>
+            <table>
+                <tr>
+                    <th>Department</th>
+                    <th>FY23 Actual</th>
+                    <th>FY24 Actual</th>
+                    <th>FY25 Budget</th>
+                    <th>FY26 Proposed</th>
+                </tr>
+                <tr>
+                    <td>General Government</td>
+                    <td>$1,150,000</td>
+                    <td>$1,180,000</td>
+                    <td>$1,190,000</td>
+                    <td>$1,200,000</td>
+                </tr>
+                <tr>
+                    <td>Public Safety</td>
+                    <td>$2,400,000</td>
+                    <td>$2,450,000</td>
+                    <td>$2,480,000</td>
+                    <td>$2,500,000</td>
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td>$4,800,000</td>
+                    <td>$4,900,000</td>
+                    <td>$4,950,000</td>
+                    <td>$5,000,000</td>
+                </tr>
+                <tr>
+                    <td>Public Works</td>
+                    <td>$1,700,000</td>
+                    <td>$1,750,000</td>
+                    <td>$1,780,000</td>
+                    <td>$1,800,000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-section" id="capital">
+        <button class="toggle-box">Capital Improvement Plan</button>
+        <div class="toggle-content">
+            <div class="capital-message">
+                <div class="capital-header">
+                    <h3>FY26-FY30 Capital Investment Strategy</h3>
+                    <p>Strengthening Hubbardston through Infrastructure, Efficiency, and Community Investment</p>
+                </div>
+                
+                <div class="key-highlight-box">
+                    <h4>Public Safety Building Initiative</h4>
+                    <p>The Town will seek voter approval for a Proposition 2.5 override to fund a new consolidated Public Safety Building and Municipal Office Space at 48 Gardner Road. This strategic investment will enhance emergency response capabilities, improve interdepartmental collaboration, and create a modern, efficient workspace for town operations.</p>
+                </div>
+
+                <div class="highlights-grid">
+                    <div class="highlight-box">
+                        <h4>One-Year Funded Projects (FY26)</h4>
+                        <ul>
+                            <li>Annual Roads Program ($100,000)</li>
+                            <li>Fire Equipment Upgrades ($65,463)</li>
+                            <li>DPW Equipment Modernization ($54,007)</li>
+                            <li>Technology Infrastructure ($20,000)</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Grant Opportunities</h4>
+                        <ul>
+                            <li>Library ADA Elevator ($550,500)</li>
+                            <li>High Street Reconstruction ($1.7M)</li>
+                            <li>Fire Engine Replacement ($650,000)</li>
+                            <li>Energy Efficiency Upgrades</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-section" id="info">
+    <button class="toggle-box">More Information</button>
+    <div class="toggle-content">
+        <!-- Tax Info Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Where Your Tax Dollars Go</button>
+            <div class="sub-toggle-content">
+                <div class="tax-info">
+                    <p>For every $100 of your property tax payment in FY26:</p>
+                    
+                    <div class="tax-grid">
+                        <div class="tax-item">
+                            <div class="tax-amount">$43.20</div>
+                            <div class="tax-label">Education</div>
+                            <div class="tax-bar" style="width: 43.2%"></div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-amount">$21.60</div>
+                            <div class="tax-label">Public Safety</div>
+                            <div class="tax-bar" style="width: 21.6%"></div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-amount">$15.50</div>
+                            <div class="tax-label">Public Works</div>
+                            <div class="tax-bar" style="width: 15.5%"></div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-amount">$10.40</div>
+                            <div class="tax-label">General Government</div>
+                            <div class="tax-bar" style="width: 10.4%"></div>
+                        </div>
+                        <div class="tax-item">
+                            <div class="tax-amount">$9.30</div>
+                            <div class="tax-label">Debt Service & Benefits</div>
+                            <div class="tax-bar" style="width: 9.3%"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>FY26 Key Facts</h4>
+                        <ul>
+                            <li>Average Single Family Tax Bill: $6,425</li>
+                            <li>Average Home Value: $425,000</li>
+                            <li>Tax Rate: $15.12 per $1,000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Changes Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Year-Over-Year Changes</button>
+            <div class="sub-toggle-content">
+                <div class="changes-grid">
+                    <div class="change-card">
+                        <h4>Tax Levy</h4>
+                        <div class="change-amount">+4.8%</div>
+                        <div class="change-details">
+                            <div>FY25: $8,852,568</div>
+                            <div>FY26: $9,276,259</div>
+                        </div>
+                    </div>
+                    
+                    <div class="change-card">
+                        <h4>State Aid</h4>
+                        <div class="change-amount">+2.7%</div>
+                        <div class="change-details">
+                            <div>FY25: $711,871</div>
+                            <div>FY26: $730,906</div>
+                        </div>
+                    </div>
+                    
+                    <div class="change-card">
+                        <h4>Local Receipts</h4>
+                        <div class="change-amount">+7.8%</div>
+                        <div class="change-details">
+                            <div>FY25: $1,502,964</div>
+                            <div>FY26: $1,619,684</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Sub-Section -->
+        <div class="info-subsection">
+            <button class="sub-toggle-box">Budget Timeline</button>
+            <div class="sub-toggle-content">
+                <div id="timeline"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>© 2025 Town of Hubbardston - Budget Portal</p>
+    </footer>
+
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
