@@ -136,4 +136,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+});// Add to your existing script.js
+document.querySelectorAll(".sub-toggle-box").forEach(button => {
+    button.addEventListener("click", function() {
+        const content = this.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+});
+
+// Initialize all sub-toggle contents as hidden
+document.querySelectorAll(".sub-toggle-content").forEach(content => {
+    content.style.display = "none";
 });
