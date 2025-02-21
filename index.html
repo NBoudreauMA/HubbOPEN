@@ -13,7 +13,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal">
         </div>
         <button class="menu-toggle">☰</button>
         <ul class="nav-links">
@@ -31,9 +31,9 @@
         <p>Your guide to understanding the town's financial outlook.</p>
     </header>
 
-    <!-- Budget Sections -->
+    <!-- Town Administrator's Message -->
     <div class="dashboard-section" id="message">
-        <button class="toggle-box" onclick="toggleSection(this)">Town Administrator's Message</button>
+        <button class="toggle-box">Town Administrator's Message</button>
         <div class="toggle-content">
             <p>Welcome to the FY26 Budget Portal. Our goal is to ensure fiscal responsibility while strategically investing in our town’s future.</p>
             <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
@@ -42,7 +42,7 @@
 
     <!-- Revenue Section -->
     <div class="dashboard-section" id="revenue">
-        <button class="toggle-box" onclick="toggleSection(this)">Revenue Overview</button>
+        <button class="toggle-box">Revenue Overview</button>
         <div class="toggle-content">
             <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
             <canvas id="revenueChart"></canvas>
@@ -51,7 +51,7 @@
 
     <!-- Expenditures Section -->
     <div class="dashboard-section" id="expenditures">
-        <button class="toggle-box" onclick="toggleSection(this)">Expenditure Overview</button>
+        <button class="toggle-box">Expenditure Overview</button>
         <div class="toggle-content">
             <canvas id="expenditureChart"></canvas>
         </div>
@@ -59,7 +59,7 @@
 
     <!-- Capital Plan -->
     <div class="dashboard-section" id="capital">
-        <button class="toggle-box" onclick="toggleSection(this)">Capital Improvement Plan</button>
+        <button class="toggle-box">Capital Improvement Plan</button>
         <div class="toggle-content">
             <p>The Capital Improvement Plan (CIP) outlines long-term investments in town infrastructure and facilities.</p>
         </div>
@@ -67,61 +67,34 @@
 
     <!-- More Info Section -->
     <div class="dashboard-section" id="info">
-        <button class="toggle-box" onclick="toggleSection(this)">More Information</button>
+        <button class="toggle-box">More Information</button>
         <div class="toggle-content">
 
             <!-- Budget Documents -->
-            <h2 class="text-lg font-semibold text-green-800">Budget Documents Repository</h2>
+            <h2>Budget Documents Repository</h2>
             <p>Access key financial reports, budget summaries, and capital plans.</p>
-            <ul class="list-disc pl-6">
+            <ul>
                 <li><a href="#">FY26 Budget Report (PDF)</a></li>
                 <li><a href="#">Capital Improvement Plan</a></li>
                 <li><a href="#">Financial Policies</a></li>
             </ul>
 
             <!-- Budget Process Overview -->
-            <h2 class="text-lg font-semibold text-green-800 mt-4">Understanding the Budget Process</h2>
+            <h2>Understanding the Budget Process</h2>
             <p>Learn how the town budget is developed and approved.</p>
-            <ul class="list-decimal pl-6">
+            <ul>
                 <li>Departmental Budget Requests</li>
                 <li>Town Administrator's Review</li>
                 <li>Public Hearings and Resident Feedback</li>
                 <li>Final Approval and Implementation</li>
             </ul>
-            <p><a href="#" class="text-blue-600 underline">View Full Budget Timeline</a></p>
-
-            <!-- Public Engagement -->
-            <h2 class="text-lg font-semibold text-green-800 mt-4">Get Involved</h2>
-            <p>We encourage residents to participate in the budget process.</p>
-            <ul class="list-disc pl-6">
-                <li><strong>Upcoming Meetings:</strong> <a href="#" class="text-blue-600 underline">View Calendar</a></li>
-                <li><strong>Submit Feedback:</strong> <a href="#" class="text-blue-600 underline">Budget Feedback Form</a></li>
-                <li><strong>Join Virtual Town Halls:</strong> <a href="#" class="text-blue-600 underline">Register for an Online Session</a></li>
-            </ul>
-
-            <!-- Educational Resources -->
-            <h2 class="text-lg font-semibold text-green-800 mt-4">Educational Resources</h2>
-            <ul class="list-disc pl-6">
-                <li><a href="#" class="text-blue-600 underline">Budgeting 101: How Municipal Budgets Work</a></li>
-                <li><a href="#" class="text-blue-600 underline">Glossary of Budget Terms</a></li>
-                <li><a href="#" class="text-blue-600 underline">Frequently Asked Questions</a></li>
-            </ul>
-
-            <!-- Financial Transparency -->
-            <h2 class="text-lg font-semibold text-green-800 mt-4">Financial Transparency</h2>
-            <p>Explore financial data with interactive tools and reports.</p>
-            <ul class="list-disc pl-6">
-                <li><a href="#" class="text-blue-600 underline">Revenue & Expenditure Dashboard</a></li>
-                <li><a href="#" class="text-blue-600 underline">Open Checkbook: View Town Spending</a></li>
-                <li><a href="#" class="text-blue-600 underline">Performance Metrics & Reports</a></li>
-            </ul>
+            <p><a href="#">View Full Budget Timeline</a></p>
 
             <!-- Contact Information -->
-            <h2 class="text-lg font-semibold text-green-800 mt-4">Contact Us</h2>
+            <h2>Contact Us</h2>
             <p>For questions or more information, contact the Finance Department:</p>
-            <p><strong>Email:</strong> <a href="mailto:finance@hubbardstonma.gov" class="text-blue-600 underline">finance@hubbardstonma.gov</a></p>
+            <p><strong>Email:</strong> <a href="mailto:finance@hubbardstonma.gov">finance@hubbardstonma.gov</a></p>
             <p><strong>Phone:</strong> 978-928-1400</p>
-            <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:30 PM</p>
 
         </div>
     </div>
