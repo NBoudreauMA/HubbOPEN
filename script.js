@@ -34,10 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Ensure event listeners attach properly even after page load delays
-    setTimeout(attachToggleListeners, 500);
+    setTimeout(attachToggleListeners, 500); // Ensure proper event attachment
 
-    // ===== Chart.js Fix (Destroy Old Charts Before Creating New Ones) =====
+    // ===== Chart.js Fix (Ensure Proper Destruction) =====
     let charts = {};
 
     function createChart(chartId, chartData) {
@@ -45,11 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (canvas) {
             const ctx = canvas.getContext("2d");
 
+            // ✅ Ensure we destroy any existing chart before creating a new one
             if (charts[chartId]) {
+                console.log(`Destroying existing chart: ${chartId}`);
                 charts[chartId].destroy();
+                charts[chartId] = null; // Ensure cleanup
             }
 
+            // ✅ Create new chart
             charts[chartId] = new Chart(ctx, chartData);
+            console.log(`Chart created: ${chartId}`);
         }
     }
 
