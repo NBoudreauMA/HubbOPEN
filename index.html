@@ -5,86 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget 2026 🚀</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script> <!-- CSV Parser -->
+    <script defer src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 🚀 Modern, Optimized CSS -->
+    <!-- 🚀 Custom Styles -->
     <style>
         :root {
             --primary: #2a7d2e;
             --secondary: #1e5b24;
             --accent: #ffd700;
             --text: #333;
-            --background: #f5f5f5;
+            --background: #f8f9fa;
             --white: #ffffff;
             --shadow: rgba(0, 0, 0, 0.1);
             --radius: 10px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--text); line-height: 1.6; }
+        body { font-family: 'Poppins', sans-serif; background: var(--background); color: var(--text); }
 
         /* Navbar */
-        .navbar { background: var(--primary); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px var(--shadow); position: sticky; top: 0; z-index: 1000; }
-        .logo img { height: 50px; }
-        .menu-toggle { display: none; font-size: 2rem; color: white; background: none; border: none; cursor: pointer; }
-        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .navbar { background: var(--primary); padding: 1rem 2rem; display: flex; justify-between items-center shadow-lg fixed w-full top-0 z-50 rounded-b-lg; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: white; font-weight: 600; padding: 8px 12px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
         /* Hero */
-        .hero { background: linear-gradient(rgba(30, 91, 36, 0.9), rgba(42, 125, 46, 0.9)), url('https://github.com/NBoudreauMA/Budget/blob/main/hubbardston_bg.jpg?raw=true'); background-size: cover; color: white; text-align: center; padding: 6rem 2rem; box-shadow: 0 4px 10px var(--shadow); }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; }
+        .hero { text-align: center; padding: 7rem 0; background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)), url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') no-repeat center center; background-size: cover; color: white; }
 
         /* Sections */
-        .section { max-width: 1100px; margin: 2rem auto; background: var(--white); border-radius: var(--radius); box-shadow: 0 4px 10px var(--shadow); overflow: hidden; transition: 0.3s; }
-        .section:hover { transform: translateY(-5px); box-shadow: 0 8px 15px var(--shadow); }
-        .toggle-header { background: var(--primary); color: white; padding: 1.5rem; font-size: 1.5rem; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .section { max-width: 900px; margin: 2rem auto; background: var(--white); border-radius: var(--radius); padding: 2rem; box-shadow: 0 4px 8px var(--shadow); }
+        .toggle-header { background: var(--primary); color: white; padding: 1rem; font-weight: bold; cursor: pointer; border-radius: var(--radius); transition: 0.3s; }
         .toggle-header:hover { background: var(--secondary); }
-        .toggle-content { display: none; padding: 2rem; animation: fadeIn 0.3s ease-in-out; }
-
+        .toggle-content { display: none; padding: 1.5rem; animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Charts */
-        .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 20px; }
-        .chart-box { padding: 1.5rem; background: var(--white); border-radius: var(--radius); box-shadow: 0 2px 6px var(--shadow); }
+        .chart-container { padding: 1.5rem; background: var(--white); border-radius: var(--radius); box-shadow: 0 2px 6px var(--shadow); }
+        .canvas-container { max-width: 100%; height: 300px; }
 
         /* Footer */
         footer { text-align: center; padding: 1rem; background: var(--primary); color: white; margin-top: 2rem; }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; background: var(--primary); position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem; }
-            .nav-links.active { display: flex; }
-        }
     </style>
 </head>
 
 <body>
+
     <!-- 🚀 Navigation -->
     <nav class="navbar">
-        <div class="logo"><img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal"></div>
-        <button class="menu-toggle">☰</button>
+        <div class="logo"><img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10"></div>
         <ul class="nav-links">
-            <li><a href="#ta-message">🏛 TA Message</a></li>
-            <li><a href="#revenue">💰 Revenue</a></li>
-            <li><a href="#expenditures">📉 Expenditures</a></li>
-            <li><a href="#capital">🏗 Capital</a></li>
-            <li><a href="#info">ℹ️ Info</a></li>
+            <li><a href="#message">TA Message</a></li>
+            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#expenditures">Expenditures</a></li>
+            <li><a href="#capital">Capital Plan</a></li>
+            <li><a href="#info">More Info</a></li>
         </ul>
     </nav>
 
     <!-- ⚡ Hero Section -->
     <header class="hero">
-        <h1>Hubbardston Budget 2026 🚀</h1>
-        <p>📊 Interactive. Transparent. Engaging.</p>
+        <h1 class="text-5xl font-extrabold">Hubbardston Budget Portal</h1>
+        <p class="text-xl mt-2 opacity-90">Your guide to understanding the town's financial outlook.</p>
     </header>
 
-    <!-- 🏛 Town Administrator's Message -->
+    <!-- 🏛 TA Message -->
     <section class="section">
-        <div class="toggle-header" onclick="toggleSection('ta-message')">🏛 Town Administrator’s Message ▼</div>
-        <div class="toggle-content" id="ta-message">
+        <div class="toggle-header" onclick="toggleSection('message')">🏛 Town Administrator’s Message ▼</div>
+        <div class="toggle-content" id="message">
             <p>Welcome to **Hubbardston's next-generation budget**! Our goal is **financial transparency, data-driven decision-making, and resident engagement.**</p>
         </div>
     </section>
@@ -93,8 +82,8 @@
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('revenue')">💰 Revenue Overview ▼</div>
         <div class="toggle-content" id="revenue">
-            <div class="chart-grid">
-                <div class="chart-box"><canvas id="revenueChart"></canvas></div>
+            <div class="chart-container">
+                <canvas id="revenueChart" class="canvas-container"></canvas>
             </div>
         </div>
     </section>
@@ -103,7 +92,9 @@
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('expenditures')">📉 Expenditures ▼</div>
         <div class="toggle-content" id="expenditures">
-            <div class="chart-box"><canvas id="expenditureChart"></canvas></div>
+            <div class="chart-container">
+                <canvas id="expenditureChart" class="canvas-container"></canvas>
+            </div>
         </div>
     </section>
 
@@ -117,27 +108,24 @@
             section.style.display = section.style.display === "block" ? "none" : "block";
         }
 
-        document.querySelector(".menu-toggle").addEventListener("click", function () {
-            document.querySelector(".nav-links").classList.toggle("active");
-        });
-
-        function loadCSVData(url, chartId) {
+        function loadCSV(url, chartId) {
             Papa.parse(url, {
                 download: true,
                 header: true,
                 complete: function(results) {
                     const labels = results.data.map(row => row.Category);
                     const data = results.data.map(row => parseFloat(row.Amount));
-
                     new Chart(document.getElementById(chartId), {
                         type: "bar",
-                        data: { labels, datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }] }
-                    });
+                        data: { labels, datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }] } }
+                    );
                 }
             });
         }
 
-        loadCSVData("revenue.csv", "revenueChart");
+        loadCSV("revenue_data.csv", "revenueChart");
+        loadCSV("expenditures_cleaned.csv", "expenditureChart");
     </script>
+
 </body>
 </html>
