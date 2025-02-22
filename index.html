@@ -29,10 +29,10 @@
             padding: 0;
         }
 
-        /* 🔥 Sleek Navbar */
+        /* 🔥 Sleek, Compact Navbar */
         .navbar {
             background: var(--primary);
-            padding: 12px 20px;
+            padding: 8px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,14 +40,14 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 10px var(--shadow);
-            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 4px 8px var(--shadow);
+            border-bottom: 2px solid var(--accent);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin: 0;
         }
 
@@ -55,18 +55,19 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 12px;
+            padding: 6px 10px;
             transition: 0.3s;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* 📌 Hero Section */
+        /* 📌 Smaller Hero Section */
         .hero {
             text-align: center;
-            padding: 6rem 0;
+            padding: 4rem 0;
             background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)), 
                         url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
                         no-repeat center center;
@@ -77,11 +78,11 @@
         /* 📌 Sections */
         .section {
             max-width: 900px;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             background: var(--white);
             border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: 0 4px 8px var(--shadow);
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px var(--shadow);
         }
 
         .toggle-header {
@@ -92,6 +93,7 @@
             cursor: pointer;
             border-radius: var(--radius);
             transition: 0.3s;
+            font-size: 1.1rem;
         }
 
         .toggle-header:hover {
@@ -100,7 +102,7 @@
 
         .toggle-content {
             display: none;
-            padding: 1.5rem;
+            padding: 1rem;
             animation: fadeIn 0.3s ease-in-out;
         }
 
@@ -128,7 +130,7 @@
             padding: 1rem;
             background: var(--primary);
             color: white;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
     </style>
 
@@ -141,7 +143,7 @@
     <!-- 🚀 Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10">
+            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" style="height: 35px;">
         </div>
         <ul class="nav-links">
             <li><a href="#message">TA Message</a></li>
@@ -154,8 +156,8 @@
 
     <!-- ⚡ Hero Section -->
     <header class="hero">
-        <h1 class="text-5xl font-extrabold">Hubbardston Budget Portal</h1>
-        <p class="text-xl mt-2 opacity-90">Your guide to understanding the town's financial outlook.</p>
+        <h1 class="text-4xl font-bold">Hubbardston Budget Portal</h1>
+        <p class="text-lg mt-2 opacity-90">Your guide to understanding the town's financial outlook.</p>
     </header>
 
     <!-- 🏛 TA Message -->
@@ -170,8 +172,12 @@
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('revenue')">💰 Revenue Overview ▼</div>
         <div class="toggle-content" id="revenue">
+            <p>Hubbardston's revenue is primarily generated from three major sources: **Tax Levy, State Aid, and Local Receipts**. The **Tax Levy** makes up the majority, followed by **State Aid**, which provides funding for essential services, and **Local Receipts**, which include excise taxes, permits, and fees.</p>
             <div class="chart-container">
-                <canvas id="revenueChart" class="canvas-container"></canvas>
+                <canvas id="revenueBarChart" class="canvas-container"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="revenuePieChart" class="canvas-container"></canvas>
             </div>
         </div>
     </section>
@@ -179,52 +185,33 @@
     <!-- 🚀 Footer -->
     <footer>© 2025 Town of Hubbardston - Budget Portal</footer>
 
-    <!-- ✅ Fix Chart.js Not Defined & Fetch CSV Data -->
+    <!-- ✅ JavaScript for Charts -->
     <script>
         function toggleSection(id) {
             const section = document.getElementById(id);
             section.style.display = section.style.display === "block" ? "none" : "block";
         }
 
-        async function loadCSV(url, chartId) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    console.error("Error: CSV file not found.");
-                    return;
-                }
-
-                const text = await response.text();
-                const rows = text.split("\n").slice(1);
-
-                const labels = [];
-                const data = [];
-
-                rows.forEach(row => {
-                    const [category, amount] = row.split(",");
-                    labels.push(category.trim());
-                    data.push(parseFloat(amount));
-                });
-
-                if (typeof Chart !== "undefined") {
-                    new Chart(document.getElementById(chartId), {
-                        type: "bar",
-                        data: {
-                            labels,
-                            datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }]
-                        }
-                    });
-                } else {
-                    console.error("Chart.js is not loaded correctly.");
-                }
-
-            } catch (error) {
-                console.error("Error loading CSV:", error);
-            }
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
-            loadCSV("revenue_data.csv", "revenueChart");
+            const labels = ["Tax Levy", "State Aid", "Local Receipts"];
+            const data = [9.2, 2.5, 1.8];
+
+            new Chart(document.getElementById("revenueBarChart"), {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [{ data: data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }]
+                },
+                options: { responsive: true }
+            });
+
+            new Chart(document.getElementById("revenuePieChart"), {
+                type: "pie",
+                data: {
+                    labels: labels,
+                    datasets: [{ data: data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }]
+                }
+            });
         });
     </script>
 
