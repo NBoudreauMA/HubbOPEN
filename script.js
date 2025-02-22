@@ -1,52 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script loaded successfully!");
-
-    // ===== Mobile Menu Toggle =====
+    // Mobile menu toggle
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
-        });
-    }
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
 
-    // ===== Toggle Functionality (Original Version Restored) =====
+    // Main Section toggles - All Start Closed
     document.querySelectorAll(".toggle-content").forEach(content => {
-        content.style.display = "none"; // Ensure all sections start hidden
+        content.style.display = "none";
     });
 
     document.querySelectorAll(".toggle-box").forEach(button => {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function() {
             const content = this.nextElementSibling;
-            if (content) {
-                content.style.display = (content.style.display === "block") ? "none" : "block";
-            }
+            content.style.display = content.style.display === "block" ? "none" : "block";
         });
     });
 
-    // ===== Chart.js Fix (Rollback to Original Behavior) =====
-    let charts = {}; // Track chart instances
+    // Sub-section toggles for More Info section
+    document.querySelectorAll(".sub-toggle-content").forEach(content => {
+        content.style.display = "none";
+    });
 
-    function createChart(chartId, chartData) {
-        const canvas = document.getElementById(chartId);
-        if (canvas) {
-            const ctx = canvas.getContext("2d");
+    document.querySelectorAll(".sub-toggle-box").forEach(button => {
+        button.addEventListener("click", function() {
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
 
-            // ✅ Properly Destroy Old Chart Before Creating a New One
-            if (charts[chartId]) {
-                console.log(`Destroying existing chart: ${chartId}`);
-                charts[chartId].destroy();
-            }
-
-            // ✅ Create New Chart
-            charts[chartId] = new Chart(ctx, chartData);
-            console.log(`Chart created: ${chartId}`);
-        }
-    }
-
-    // ===== Initialize Charts Immediately (As in Original) =====
-    createChart("revenueChart", {
+    // Revenue Chart
+    const revenueCtx = document.getElementById("revenueChart").getContext("2d");
+    new Chart(revenueCtx, {
         type: "bar",
         data: {
             labels: ["Tax Levy", "State Aid", "Local Receipts"],
@@ -72,11 +59,17 @@ document.addEventListener("DOMContentLoaded", function () {
             responsive: true,
             maintainAspectRatio: false,
             aspectRatio: 3,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        callback: function (value) {
+                        callback: function(value) {
                             return '$' + value.toLocaleString();
                         }
                     }
@@ -85,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: function (context) {
+                        label: function(context) {
                             return context.dataset.label + ': $' + context.raw.toLocaleString();
                         }
                     }
@@ -97,7 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    createChart("expenditureChart", {
+    // Expenditure Chart
+    const expenditureCtx = document.getElementById("expenditureChart").getContext("2d");
+    new Chart(expenditureCtx, {
         type: "bar",
         data: {
             labels: ["General Gov", "Public Safety", "Education", "Public Works"],
@@ -123,11 +118,17 @@ document.addEventListener("DOMContentLoaded", function () {
             responsive: true,
             maintainAspectRatio: false,
             aspectRatio: 3,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        callback: function (value) {
+                        callback: function(value) {
                             return '$' + value.toLocaleString();
                         }
                     }
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: function (context) {
+                        label: function(context) {
                             return context.dataset.label + ': $' + context.raw.toLocaleString();
                         }
                     }
@@ -148,4 +149,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Optional: Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Optional: Open the section if it's closed
+                const content = targetElement.querySelector('.toggle-content');
+                if (content && content.style.display === 'none') {
+                    content.style.display = 'block';
+                }
+            }
+        });
+    });
 });
