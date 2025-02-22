@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget 2026 🚀</title>
 
-    <!-- ✅ Default Favicon -->
+    <!-- Default Favicon -->
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg">
 
-    <!-- ✅ Ensuring Chart.js Loads Correctly -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- ✅ Ultra-Modern Styling -->
     <style>
         :root {
             --primary: #2a7d2e;
@@ -32,7 +31,6 @@
             padding: 0;
         }
 
-        /* 🔥 Sleek Navbar */
         .navbar {
             background: var(--primary);
             padding: 8px 20px;
@@ -67,20 +65,18 @@
             color: var(--accent);
         }
 
-        /* 📌 Hero Section */
         .hero {
             text-align: center;
             padding: 3rem 0;
             background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)), 
-                        url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
+                        url('https://github.com/NBoudreauMA/Budget/blob/main/hubbardston_bg.jpg?raw=true') 
                         no-repeat center center;
             background-size: cover;
             color: white;
         }
 
-        /* 📌 Sections */
         .section {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 1.5rem auto;
             background: var(--white);
             border-radius: var(--radius);
@@ -97,6 +93,9 @@
             border-radius: var(--radius);
             transition: 0.3s;
             font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .toggle-header:hover {
@@ -109,26 +108,107 @@
             animation: fadeIn 0.3s ease-in-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 20px 0;
         }
 
-        /* 📊 Chart Styles */
-        .chart-container {
+        .chart-box {
+            position: relative;
+            height: 300px;
             padding: 1rem;
             background: var(--white);
             border-radius: var(--radius);
             box-shadow: 0 2px 6px var(--shadow);
-            text-align: center;
         }
 
-        .canvas-container {
-            max-width: 250px;
-            margin: auto;
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
 
-        /* 📌 Footer */
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            border: 1px solid #eee;
+            text-align: right;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            text-align: left;
+        }
+
+        .data-table td:first-child {
+            text-align: left;
+        }
+
+        .sub-toggle-header {
+            background: #f0f9f0;
+            color: var(--primary);
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sub-toggle-content {
+            display: none;
+            padding: 1rem 0;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .key-highlight-box {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+        }
+
+        .signature-block {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .signature-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .ta-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -136,12 +216,30 @@
             color: white;
             margin-top: 1.5rem;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .signature-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
-
 <body>
-
-    <!-- 🚀 Navigation Bar -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
             <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" style="height: 30px;">
@@ -155,60 +253,270 @@
         </ul>
     </nav>
 
-    <!-- ⚡ Hero Section -->
+    <!-- Hero Section -->
     <header class="hero">
-        <h1 class="text-3xl font-bold">Hubbardston Budget Portal</h1>
-        <p class="text-md mt-2 opacity-90">Your resource for understanding the town's financial outlook.</p>
+        <h1>FY26 Budget Proposal</h1>
+        <p>Comprehensive overview of Hubbardston's financial plan and strategic investments for Fiscal Year 2026.</p>
     </header>
 
-    <!-- 🏛 TA Message -->
+    <!-- TA Message -->
     <section class="section">
-        <div class="toggle-header" onclick="toggleSection('message')">🏛 Town Administrator’s Message ▼</div>
-        <div class="toggle-content" id="message">
-            <p>Welcome to the **Hubbardston Budget Portal**, where financial transparency meets responsible governance. This year's budget prioritizes **stability, sustainability, and strategic investment** in the town’s future. Every dollar is allocated with the goal of maintaining essential services while preparing for long-term financial success.</p>
+        <div class="toggle-header" onclick="toggleSection('message')">
+            Town Administrator's Message
+            <span class="toggle-icon">▼</span>
         </div>
-    </section>
-
-    <!-- 📊 Revenue -->
-    <section class="section">
-        <div class="toggle-header" onclick="toggleSection('revenue')">💰 Revenue Overview ▼</div>
-        <div class="toggle-content" id="revenue">
-            <p>Hubbardston’s revenue streams include **property taxes, state aid, and local receipts**. These sources provide the foundation for public services, infrastructure, and community programs.</p>
-
-            <div class="chart-container">
-                <h3 class="text-lg font-semibold text-gray-800">Revenue Breakdown</h3>
-                <canvas id="revenuePieChart" class="canvas-container"></canvas>
+        <div class="toggle-content" id="message">
+            <div class="ta-header">
+                <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Town Seal" class="ta-seal">
+                <div class="ta-info">
+                    <h2>Office of the Town Administrator</h2>
+                    <p>2 Main Street, Unit 5</p>
+                    <p>Hubbardston, MA 01452</p>
+                </div>
+            </div>
+            
+            <div class="message-content">
+                <p class="date">February 21, 2025</p>
+                <p class="greeting">Dear Residents of Hubbardston,</p>
+                <p>I am pleased to present the Fiscal Year 2026 budget proposal for the Town of Hubbardston. This budget reflects our ongoing commitment to fiscal responsibility while investing in critical services and infrastructure that our community needs.</p>
+                <!-- Add more message content -->
+                <div class="signature-block">
+                    <div class="signature-content">
+                        <div class="signature-left">
+                            <p>Sincerely,</p>
+                            <p><strong>Nathan Boudreau, MPA, MCPPO</strong><br>Town Administrator</p>
+                        </div>
+                        <div class="signature-photo">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQEW5_btYizZyg/profile-displayphoto-shrink_400_400/B4EZSZ4lygHcAk-/0/1737748537895?e=1745452800&v=beta&t=5n-BU2cpUF2VlMHcmw69kzWMcGz5nIyrg2lcLkX8_00" alt="Town Administrator" class="ta-photo">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 🚀 Footer -->
-    <footer>© 2025 Town of Hubbardston - Budget Portal</footer>
+    <!-- Revenue Section -->
+    <section class="section">
+        <div class="toggle-header" onclick="toggleSection('revenue')">
+            Revenue Overview
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="toggle-content" id="revenue">
+            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
+            
+            <div class="chart-grid">
+                <div class="chart-box">
+                    <canvas id="revenueBarChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <canvas id="revenuePieChart"></canvas>
+                </div>
+            </div>
 
-    <!-- ✅ JavaScript for Charts -->
+            <table class="data-table">
+                <tr>
+                    <th>Account</th>
+                    <th>FY23 Actual</th>
+                    <th>FY24 Actual</th>
+                    <th>FY25 Budget</th>
+                    <th>FY26 Proposed</th>
+                </tr>
+                <tr>
+                    <td>Tax Levy</td>
+                    <td>$8,052,778</td>
+                    <td>$8,425,343</td>
+                    <td>$8,852,568</td>
+                    <td>$9,276,259</td>
+                </tr>
+                <!-- Add other rows -->
+            </table>
+        </div>
+    </section>
+
+    <!-- Expenditure Section -->
+    <section class="section">
+        <div class="toggle-header" onclick="toggleSection('expenditures')">
+            Expenditure Overview
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="toggle-content" id="expenditures">
+            <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
+            <div class="chart-box">
+                <canvas id="expenditureChart"></canvas>
+            </div>
+            <!-- Add expenditure table -->
+        </div>
+    </section>
+
+    <!-- Capital Plan Section -->
+    <section class="section">
+        <div class="toggle-header" onclick="toggleSection('capital')">
+            Capital Improvement Plan
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="toggle-content" id="capital">
+            <div class="key-highlight-box">
+                <h4>Public Safety Building Initiative</h4>
+                <p>The Town will seek voter approval for a Proposition 2.5 override to fund a new consolidated Public Safety Building and Municipal Office Space at 48 Gardner Road.</p>
+            </div>
+            <!-- Add capital content -->
+        </div>
+    </section>
+
+    <!-- More Info Section -->
+    <section class="section">
+        <div class="toggle-header" onclick="toggleSection('info')">
+            More Information
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="toggle-content" id="info">
+            <div class="sub-toggle-header" onclick="toggleSubSection('tax-info')">
+                Where Your Tax Dollars Go
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="sub-toggle-content" id="tax-info">
+                <!-- Add tax info content -->
+            </div>
+
+            <div class="sub-toggle-header" onclick="toggleSubSection('changes')">
+                Year-Over-Year Changes
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="sub-toggle-content" id="changes">
+                <!-- Add changes content -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Town of Hubbardston - Budget Portal</p>
+    </footer>
+
     <script>
         function toggleSection(id) {
-            const section = document.getElementById(id);
-            section.style.display = section.style.display === "block" ? "none" : "block";
+            const content = document.getElementById(id);
+            const header = content.previousElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            icon.textContent = content.style.display === "block" ? "▼" : "▲";
+            
+            if (content.querySelector('canvas')) {
+                window.dispatchEvent(new Event('resize'));
+            }
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const labels = ["Tax Levy", "State Aid", "Local Receipts"];
-            const data = [9.2, 2.5, 1.8];
+        function toggleSubSection(id) {
+            const content = document.getElementById(id);
+            const header = content.previousElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.style.display = content.style.display === "block" ? "none" : "block";
+            icon.textContent = content.style.display === "block" ? "▼" : "▲";
+        }
 
-            new Chart(document.getElementById("revenuePieChart"), {
-                type: "pie",
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"]
-                    }]
-                },
-                options: { responsive: true }
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Charts
+            const createCharts = () => {
+                try {
+                    // Revenue Bar Chart
+                    const revenueCtx = document.getElementById("revenueBarChart").getContext("2d");
+                    new Chart(revenueCtx, {
+                        type: "bar",
+                        data: {
+                            labels: ["Tax Levy", "State Aid", "Local Receipts"],
+                            datasets: [{
+                                label: "FY23 Actual",
+                                data: [8052778, 668674, 1364392],
+                                backgroundColor: "#2a7d2e"
+                            }, {
+                                label: "FY24 Actual",
+                                data: [8425343, 682452, 1478687],
+                                backgroundColor: "#1e5b24"
+                            }, {
+                                label: "FY25 Budget",
+                                data: [8852568, 711871, 1502964],
+                                backgroundColor: "#34d399"
+                            }, {
+                                label: "FY26 Proposed",
+                                data: [9276259, 730906, 1619684],
+                                backgroundColor: "#ffd700"
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Revenue Trends By Year'
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return context.dataset.label + ': $' + context.raw.toLocaleString();
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return '$' + value.toLocaleString();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Revenue Pie Chart
+                    const revenuePieCtx = document.getElementById("revenuePieChart").getContext("2d");
+                    new Chart(revenuePieCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Tax Levy', 'State Aid', 'Local Receipts'],
+                            datasets: [{
+                                data: [9276259, 730906, 1619684],
+                                backgroundColor: [
+                                    '#2a7d2e',
+                                    '#1e5b24',
+                                    '#34d399'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'FY26 Revenue Distribution'
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            const value = context.raw;
+                                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                            const percentage = ((value / total) * 100).toFixed(1);
+                                            return `${context.label}: $${value.toLocaleString()} (${percentage}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Add Expenditure Chart initialization here
+                } catch (error) {
+                    console.error("Error creating charts:", error);
+                }
+            };
+
+            createCharts();
         });
     </script>
-
 </body>
 </html>
