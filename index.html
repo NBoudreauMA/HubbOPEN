@@ -335,52 +335,60 @@
         </div>
     </section>
 
-  <!-- Expenditure Section -->
-    <section class="section">
-        <div class="toggle-header" onclick="toggleSection('expenditures')">
-            Expenditure Overview
-            <span class="toggle-icon">▼</span>
+ <!-- Expenditure Section -->
+<section class="section">
+    <div class="toggle-header" onclick="toggleSection('expenditures')">
+        Expenditure Overview 
+        <span class="toggle-icon">▼</span>
+    </div>
+    <div class="toggle-content" id="expenditures">
+        <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
+        <div class="chart-box">
+            <canvas id="expenditureChart"></canvas>
         </div>
-        <div class="toggle-content" id="expenditures">
-            <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
-            <div class="chart-box">
-                <canvas id="expenditureChart"></canvas>
-            </div>
-            <table class="data-table" id="expenditureTable">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>FY24 Actual</th>
-                        <th>FY25 Requested</th>
-                        <th>FY25 Actual</th>
-                        <th>FY26 Dept</th>
-                        <th>FY26 Admin</th>
-                        <th>Change ($)</th>
-                        <th>Change (%)</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </section>
+        <table class="data-table" id="expenditureTable">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>FY24 Actual</th>
+                    <th>FY25 Requested</th>
+                    <th>FY25 Actual</th>
+                    <th>FY26 Dept</th>
+                    <th>FY26 Admin</th>
+                    <th>Change ($)</th>
+                    <th>Change (%)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
 
-    <script>
-        function toggleSection(id) {
-            const section = document.getElementById(id);
-            section.style.display = (section.style.display === 'none' || section.style.display === '') ? 'block' : 'none';
-        }
-
-        async function loadExpenditures() {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<script>
+    async function loadExpenditures() {
+        try {
+            // Use the correct file path
             const response = await fetch('expenditures_cleaned.csv');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
             const csvText = await response.text();
+            if (!csvText.trim()) {
+                throw new Error("CSV file is empty or improperly formatted.");
+            }
             const parsedData = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+            if (!parsedData.data.length) {
+                throw new Error("CSV file has no valid rows.");
+            }
             
             const labels = [];
             const fy24 = [], fy25_req = [], fy25_actual = [], fy26_dept = [], fy26_admin = [];
             const tableBody = document.querySelector('#expenditureTable tbody');
-            
-            parsedData.data.forEach(row => {
-                if (row.Category) {
+            tableBody.innerHTML = ""; // Clear any previous data
+
+            for (const row of parsedData.data) {
+                if (row.Category && row.FY24_Actual) {
                     labels.push(row.Category);
                     fy24.push(parseFloat(row.FY24_Actual.replace(/[$,]/g, '')) || 0);
                     fy25_req.push(parseFloat(row.FY25_Requested.replace(/[$,]/g, '')) || 0);
@@ -389,17 +397,19 @@
                     fy26_admin.push(parseFloat(row.FY26_Admin.replace(/[$,]/g, '')) || 0);
                     
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${row.Category}</td>
-                                    <td>$${row.FY24_Actual}</td>
-                                    <td>$${row.FY25_Requested}</td>
-                                    <td>$${row.FY25_Actual}</td>
-                                    <td>$${row.FY26_Dept}</td>
-                                    <td>$${row.FY26_Admin}</td>
-                                    <td>${row.Change_Dollars}</td>
-                                    <td>${row.Change_Percent}</td>`;
+                    tr.innerHTML = `
+                        <td>${row.Category}</td>
+                        <td>$${row.FY24_Actual}</td>
+                        <td>$${row.FY25_Requested}</td>
+                        <td>$${row.FY25_Actual}</td>
+                        <td>$${row.FY26_Dept}</td>
+                        <td>$${row.FY26_Admin}</td>
+                        <td>${row.Change_Dollars || 'N/A'}</td>
+                        <td>${row.Change_Percent || 'N/A'}</td>
+                    `;
                     tableBody.appendChild(tr);
                 }
-            });
+            }
             
             new Chart(document.getElementById('expenditureChart').getContext('2d'), {
                 type: 'bar',
@@ -416,15 +426,22 @@
                 options: {
                     responsive: true,
                     scales: {
-                        y: { beginAtZero: true, ticks: { callback: (value) => `$${value.toLocaleString()}` } }
+                        y: { 
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => `$${value.toLocaleString()}`  
+                            }
+                        }
                     }
                 }
             });
+        } catch (error) {
+            console.error('Error loading expenditure data:', error);
         }
-        loadExpenditures();
-    </script>
-</body>
-</html>
+    }
+    
+    loadExpenditures();
+</script>
 
 
     <!-- Capital Plan Section -->
