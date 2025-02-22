@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script> <!-- CSV Parser -->
 
     <!-- 🚀 Modern, Optimized CSS -->
     <style>
@@ -93,8 +94,7 @@
         <div class="toggle-header" onclick="toggleSection('revenue')">💰 Revenue Overview ▼</div>
         <div class="toggle-content" id="revenue">
             <div class="chart-grid">
-                <div class="chart-box"><canvas id="revenueBarChart"></canvas></div>
-                <div class="chart-box"><canvas id="revenuePieChart"></canvas></div>
+                <div class="chart-box"><canvas id="revenueChart"></canvas></div>
             </div>
         </div>
     </section>
@@ -121,9 +121,23 @@
             document.querySelector(".nav-links").classList.toggle("active");
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            new Chart(document.getElementById("revenueBarChart"), { type: "bar", data: { labels: ["Taxes", "State Aid", "Local Receipts"], datasets: [{ data: [500000, 200000, 100000], backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }] }} );
-        });
+        function loadCSVData(url, chartId) {
+            Papa.parse(url, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const labels = results.data.map(row => row.Category);
+                    const data = results.data.map(row => parseFloat(row.Amount));
+
+                    new Chart(document.getElementById(chartId), {
+                        type: "bar",
+                        data: { labels, datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }] }
+                    });
+                }
+            });
+        }
+
+        loadCSVData("revenue.csv", "revenueChart");
     </script>
 </body>
 </html>
