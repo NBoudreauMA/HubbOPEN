@@ -11,54 +11,49 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ===== Toggle Functionality =====
-    document.querySelectorAll(".toggle-content").forEach(content => {
-        content.style.display = "none"; // Ensure all sections start hidden
-    });
-
-    document.querySelectorAll(".toggle-box").forEach(button => {
-        button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            if (content) {
-                content.style.display = (content.style.display === "block") ? "none" : "block";
-            }
+    // ===== Ensure Event Listeners Attach Properly =====
+    function attachToggleListeners() {
+        document.querySelectorAll(".toggle-content").forEach(content => {
+            content.style.display = "none"; // Ensure all sections start hidden
         });
-    });
 
-    document.querySelectorAll(".sub-toggle-content").forEach(content => {
-        content.style.display = "none"; // Ensure nested sections are hidden initially
-    });
-
-    document.querySelectorAll(".sub-toggle-box").forEach(button => {
-        button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            if (content) {
-                content.style.display = (content.style.display === "block") ? "none" : "block";
-            }
+        document.querySelectorAll(".toggle-box").forEach(button => {
+            button.removeEventListener("click", toggleSection); // Prevent duplicate listeners
+            button.addEventListener("click", toggleSection);
         });
-    });
 
-    // ===== Chart.js Fix (Prevent Multiple Initializations) =====
-    let charts = {}; // Store active chart instances
+        console.log("Toggle event listeners attached!");
+    }
+
+    function toggleSection() {
+        console.log("Toggle clicked:", this.innerText);
+        const content = this.nextElementSibling;
+        if (content) {
+            content.style.display = (content.style.display === "block") ? "none" : "block";
+            console.log("Toggled:", content.style.display);
+        }
+    }
+
+    // Ensure event listeners attach properly even after page load delays
+    setTimeout(attachToggleListeners, 500);
+
+    // ===== Chart.js Fix (Destroy Old Charts Before Creating New Ones) =====
+    let charts = {};
 
     function createChart(chartId, chartData) {
         const canvas = document.getElementById(chartId);
         if (canvas) {
             const ctx = canvas.getContext("2d");
 
-            // Destroy the existing chart if it exists
             if (charts[chartId]) {
-                console.log(`Destroying existing chart: ${chartId}`);
                 charts[chartId].destroy();
             }
 
-            // Create a new chart and store it in the charts object
             charts[chartId] = new Chart(ctx, chartData);
-            console.log(`Chart created: ${chartId}`);
         }
     }
 
-    // ===== Load Charts Only If They're Visible =====
+    // ===== Load Charts Only When Visible =====
     function initChartsIfVisible() {
         const revenueCanvas = document.getElementById("revenueChart");
         const expenditureCanvas = document.getElementById("expenditureChart");
@@ -170,13 +165,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ===== Initialize Charts Only When Section is Clicked =====
+    // Initialize Charts When Sections Expand
     document.querySelectorAll(".toggle-box").forEach(button => {
         button.addEventListener("click", function () {
-            setTimeout(initChartsIfVisible, 300); // Delay to allow toggling animation
+            setTimeout(initChartsIfVisible, 300);
         });
     });
 
-    // Initialize charts if they're already visible on page load
     initChartsIfVisible();
 });
