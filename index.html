@@ -368,7 +368,7 @@
 <script>
     async function loadExpenditures() {
         try {
-            const response = await fetch('revenue_data.csv');
+            const response = await fetch('expenditures_cleaned.csv');
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
