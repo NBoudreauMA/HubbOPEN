@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (window.revenueChart) {
                 window.revenueChart.destroy();
             }
+            if (window.revenuePieChart) {
+                window.revenuePieChart.destroy();
+            }
             if (window.expenditureChart) {
                 window.expenditureChart.destroy();
             }
@@ -82,6 +85,25 @@ document.addEventListener("DOMContentLoaded", function () {
                                 bottom: 10
                             }
                         },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Revenue Trends By Year',
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': $' + context.raw.toLocaleString();
+                                    }
+                                }
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        },
                         scales: {
                             y: {
                                 beginAtZero: true,
@@ -91,12 +113,46 @@ document.addEventListener("DOMContentLoaded", function () {
                                     }
                                 }
                             }
-                        },
+                        }
+                    }
+                });
+            }
+
+            // Revenue Pie Chart
+            const revenuePieCtx = document.getElementById("revenuePieChart")?.getContext("2d");
+            if (revenuePieCtx) {
+                window.revenuePieChart = new Chart(revenuePieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Tax Levy', 'State Aid', 'Local Receipts'],
+                        datasets: [{
+                            data: [9276259, 730906, 1619684], // FY26 numbers
+                            backgroundColor: [
+                                '#2a7d2e',
+                                '#1e5b24',
+                                '#34d399'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
                         plugins: {
+                            title: {
+                                display: true,
+                                text: 'FY26 Revenue Distribution',
+                                font: {
+                                    size: 16
+                                }
+                            },
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
-                                        return context.dataset.label + ': $' + context.raw.toLocaleString();
+                                        const value = context.raw;
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1);
+                                        return `${context.label}: $${value.toLocaleString()} (${percentage}%)`;
                                     }
                                 }
                             },
@@ -143,17 +199,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                 bottom: 10
                             }
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return '$' + value.toLocaleString();
-                                    }
-                                }
-                            }
-                        },
                         plugins: {
+                            title: {
+                                display: true,
+                                text: 'Expenditure Trends By Year',
+                                font: {
+                                    size: 16
+                                }
+                            },
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
@@ -163,6 +216,16 @@ document.addEventListener("DOMContentLoaded", function () {
                             },
                             legend: {
                                 position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
                             }
                         }
                     }
@@ -199,6 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('resize', () => {
         if (window.revenueChart) {
             window.revenueChart.resize();
+        }
+        if (window.revenuePieChart) {
+            window.revenuePieChart.resize();
         }
         if (window.expenditureChart) {
             window.expenditureChart.resize();
