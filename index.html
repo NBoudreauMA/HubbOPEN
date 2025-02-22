@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget 2026 🚀</title>
     
-    <!-- ✅ Internal Styles for Faster Performance -->
+    <!-- ✅ Default Favicon to Prevent 404 Errors -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg">
+
+    <!-- ✅ Internal Styles for Performance Optimization -->
     <style>
         :root {
             --primary: #2a7d2e;
@@ -130,7 +133,7 @@
     </style>
 
     <!-- ✅ Ensuring JavaScript Loads Properly -->
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -176,7 +179,7 @@
     <!-- 🚀 Footer -->
     <footer>© 2025 Town of Hubbardston - Budget Portal</footer>
 
-    <!-- ✅ Fetch CSV Data for Charts -->
+    <!-- ✅ Fix Chart.js Not Defined & Fetch CSV Data -->
     <script>
         function toggleSection(id) {
             const section = document.getElementById(id);
@@ -186,9 +189,14 @@
         async function loadCSV(url, chartId) {
             try {
                 const response = await fetch(url);
+                if (!response.ok) {
+                    console.error("Error: CSV file not found.");
+                    return;
+                }
+
                 const text = await response.text();
-                const rows = text.split("\n").slice(1); 
-                
+                const rows = text.split("\n").slice(1);
+
                 const labels = [];
                 const data = [];
 
@@ -198,19 +206,26 @@
                     data.push(parseFloat(amount));
                 });
 
-                new Chart(document.getElementById(chartId), {
-                    type: "bar",
-                    data: {
-                        labels,
-                        datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }]
-                    }
-                });
+                if (typeof Chart !== "undefined") {
+                    new Chart(document.getElementById(chartId), {
+                        type: "bar",
+                        data: {
+                            labels,
+                            datasets: [{ data, backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"] }]
+                        }
+                    });
+                } else {
+                    console.error("Chart.js is not loaded correctly.");
+                }
+
             } catch (error) {
                 console.error("Error loading CSV:", error);
             }
         }
 
-        loadCSV("revenue_data.csv", "revenueChart");
+        document.addEventListener("DOMContentLoaded", () => {
+            loadCSV("revenue_data.csv", "revenueChart");
+        });
     </script>
 
 </body>
