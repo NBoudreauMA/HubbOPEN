@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,146 +220,100 @@
     </div>
 
     <div class="dashboard-section" id="info">
-    <button class="toggle-box">More Information</button>
-    <div class="toggle-content">
-        <!-- Tax Info Sub-Section -->
-        <div class="info-subsection">
-            <button class="sub-toggle-box">Where Your Tax Dollars Go</button>
-            <div class="sub-toggle-content">
-                <div class="tax-info">
-                    <p>For every $100 of your property tax payment in FY26:</p>
-                    
-                    <div class="tax-grid">
-                        <div class="tax-item">
-                            <div class="tax-amount">$43.20</div>
-                            <div class="tax-label">Education</div>
-                            <div class="tax-bar" style="width: 43.2%"></div>
-                        </div>
-                        <div class="tax-item">
-                            <div class="tax-amount">$21.60</div>
-                            <div class="tax-label">Public Safety</div>
-                            <div class="tax-bar" style="width: 21.6%"></div>
-                        </div>
-                        <div class="tax-item">
-                            <div class="tax-amount">$15.50</div>
-                            <div class="tax-label">Public Works</div>
-                            <div class="tax-bar" style="width: 15.5%"></div>
-                        </div>
-                        <div class="tax-item">
-                            <div class="tax-amount">$10.40</div>
-                            <div class="tax-label">General Government</div>
-                            <div class="tax-bar" style="width: 10.4%"></div>
-                        </div>
-                        <div class="tax-item">
-                            <div class="tax-amount">$9.30</div>
-                            <div class="tax-label">Debt Service & Benefits</div>
-                            <div class="tax-bar" style="width: 9.3%"></div>
-                        </div>
-                    </div>
-
-                    <div class="info-box">
-                        <h4>FY26 Key Facts</h4>
-                        <ul>
-                            <li>Average Single Family Tax Bill: $6,425</li>
-                            <li>Average Home Value: $425,000</li>
-                            <li>Tax Rate: $15.12 per $1,000</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Changes Sub-Section -->
-        <div class="info-subsection">
-            <button class="sub-toggle-box">Year-Over-Year Changes</button>
-            <div class="sub-toggle-content">
-                <div class="changes-grid">
-                    <div class="change-card">
-                        <h4>Tax Levy</h4>
-                        <div class="change-amount">+4.8%</div>
-                        <div class="change-details">
-                            <div>FY25: $8,852,568</div>
-                            <div>FY26: $9,276,259</div>
-                        </div>
-                    </div>
-                    
-                    <div class="change-card">
-                        <h4>State Aid</h4>
-                        <div class="change-amount">+2.7%</div>
-                        <div class="change-details">
-                            <div>FY25: $711,871</div>
-                            <div>FY26: $730,906</div>
-                        </div>
-                    </div>
-                    
-                    <div class="change-card">
-                        <h4>Local Receipts</h4>
-                        <div class="change-amount">+7.8%</div>
-                        <div class="change-details">
-                            <div>FY25: $1,502,964</div>
-                            <div>FY26: $1,619,684</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Timeline Sub-Section -->
-        <div class="info-subsection">
-            <button class="sub-toggle-box">Budget Timeline</button>
-            <div class="sub-toggle-content">
-                <div id="timeline"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <footer>
-        <p>© 2025 Town of Hubbardston - Budget Portal</p>
-    </footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hubbardston Budget Portal</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="script.js"></script>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" loading="lazy">
-        </div>
-        <button class="menu-toggle">☰</button>
-        <ul class="nav-links">
-            <li><a href="#message">TA Message</a></li>
-            <li><a href="#revenue">Revenue</a></li>
-            <li><a href="#expenditures">Expenditures</a></li>
-            <li><a href="#capital">Capital Plan</a></li>
-            <li><a href="#info">More Info</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <h1>FY26 Budget Proposal</h1>
-        <p>Comprehensive overview of Hubbardston's financial plan and strategic investments for Fiscal Year 2026.</p>
-    </header>
-
-    <div class="dashboard-section" id="revenue">
-        <button class="toggle-box">Revenue Overview</button>
+        <button class="toggle-box">More Information</button>
         <div class="toggle-content">
-            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-            <canvas id="revenueChart"></canvas>
+            <div class="info-subsection">
+                <button class="sub-toggle-box">Where Your Tax Dollars Go</button>
+                <div class="sub-toggle-content">
+                    <div class="tax-info">
+                        <p>For every $100 of your property tax payment in FY26:</p>
+                        
+                        <div class="tax-grid">
+                            <div class="tax-item">
+                                <div class="tax-amount">$43.20</div>
+                                <div class="tax-label">Education</div>
+                                <div class="tax-bar" style="width: 43.2%"></div>
+                            </div>
+                            <div class="tax-item">
+                                <div class="tax-amount">$21.60</div>
+                                <div class="tax-label">Public Safety</div>
+                                <div class="tax-bar" style="width: 21.6%"></div>
+                            </div>
+                            <div class="tax-item">
+                                <div class="tax-amount">$15.50</div>
+                                <div class="tax-label">Public Works</div>
+                                <div class="tax-bar" style="width: 15.5%"></div>
+                            </div>
+                            <div class="tax-item">
+                                <div class="tax-amount">$10.40</div>
+                                <div class="tax-label">General Government</div>
+                                <div class="tax-bar" style="width: 10.4%"></div>
+                            </div>
+                            <div class="tax-item">
+                                <div class="tax-amount">$9.30</div>
+                                <div class="tax-label">Debt Service & Benefits</div>
+                                <div class="tax-bar" style="width: 9.3%"></div>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>FY26 Key Facts</h4>
+                            <ul>
+                                <li>Average Single Family Tax Bill: $6,425</li>
+                                <li>Average Home Value: $425,000</li>
+                                <li>Tax Rate: $15.12 per $1,000</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-subsection">
+                <button class="sub-toggle-box">Year-Over-Year Changes</button>
+                <div class="sub-toggle-content">
+                    <div class="changes-grid">
+                        <div class="change-card">
+                            <h4>Tax Levy</h4>
+                            <div class="change-amount">+4.8%</div>
+                            <div class="change-details">
+                                <div>FY25: $8,852,568</div>
+                                <div>FY26: $9,276,259</div>
+                            </div>
+                        </div>
+                        
+                        <div class="change-card">
+                            <h4>State Aid</h4>
+                            <div class="change-amount">+2.7%</div>
+                            <div class="change-details">
+                                <div>FY25: $711,871</div>
+                                <div>FY26: $730,906</div>
+                            </div>
+                        </div>
+                        
+                        <div class="change-card">
+                            <h4>Local Receipts</h4>
+                            <div class="change-amount">+7.8%</div>
+                            <div class="change-details">
+                                <div>FY25: $1,502,964</div>
+                                <div>FY26: $1,619,684</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-subsection">
+                <button class="sub-toggle-box">Budget Timeline</button>
+                <div class="sub-toggle-content">
+                    <div id="timeline"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>© 2025 Town of Hubbardston - Budget Portal</p>
     </footer>
+
 </body>
 </html>
