@@ -159,14 +159,6 @@
         <div class="toggle-header" onclick="toggleSection('message')">🏛 Town Administrator’s Message ▼</div>
         <div class="toggle-content" id="message">
             <p>Hubbardston’s FY26 budget maintains **fiscal responsibility**, funds **essential services**, and positions the town for **sustainable growth**.</p>
-            <p>**Key Highlights:**</p>
-            <ul>
-                <li>📈 **Total Revenue:** $11,699,616 (+5.71%)</li>
-                <li>🏫 **Education Investment:** $7,334,563 (+8%)</li>
-                <li>🚓 **Public Safety Funding:** $1,581,842</li>
-                <li>🚧 **Public Works Allocation:** $920,184</li>
-                <li>🏗 **Capital Investment:** $275,000</li>
-            </ul>
         </div>
     </section>
 
@@ -215,7 +207,9 @@
             });
         }
 
+        // ✅ Correctly loading CSVs from root directory
         loadCSV("revenue_data.csv", "revenueChart");
+        loadCSV("expenditures_cleaned.csv", "expenditureChart");
     </script>
 
 </body>
