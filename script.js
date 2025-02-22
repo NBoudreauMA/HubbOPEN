@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.expenditureChart.destroy();
             }
 
-            // Revenue Chart
-            const revenueCtx = document.getElementById("revenueChart")?.getContext("2d");
+            // Revenue Bar Chart
+            const revenueCtx = document.getElementById("revenueBarChart")?.getContext("2d");
             if (revenueCtx) {
                 window.revenueChart = new Chart(revenueCtx, {
                     type: "bar",
