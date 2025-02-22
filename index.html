@@ -333,7 +333,7 @@
         </div>
     </section>
 
-    <!-- Expenditure Section -->
+  <!-- Expenditure Section -->
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('expenditures')">
             Expenditure Overview
@@ -344,9 +344,86 @@
             <div class="chart-box">
                 <canvas id="expenditureChart"></canvas>
             </div>
-            <!-- Add expenditure table -->
+            <table class="data-table" id="expenditureTable">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>FY24 Actual</th>
+                        <th>FY25 Requested</th>
+                        <th>FY25 Actual</th>
+                        <th>FY26 Dept</th>
+                        <th>FY26 Admin</th>
+                        <th>Change ($)</th>
+                        <th>Change (%)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </section>
+
+    <script>
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            section.style.display = (section.style.display === 'none' || section.style.display === '') ? 'block' : 'none';
+        }
+
+        async function loadExpenditures() {
+            const response = await fetch('FY26_Working_Budget_Cleaned.csv');
+            const csvText = await response.text();
+            const parsedData = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+            
+            const labels = [];
+            const fy24 = [], fy25_req = [], fy25_actual = [], fy26_dept = [], fy26_admin = [];
+            const tableBody = document.querySelector('#expenditureTable tbody');
+            
+            parsedData.data.forEach(row => {
+                if (row.Category) {
+                    labels.push(row.Category);
+                    fy24.push(parseFloat(row.FY24_Actual.replace(/[$,]/g, '')) || 0);
+                    fy25_req.push(parseFloat(row.FY25_Requested.replace(/[$,]/g, '')) || 0);
+                    fy25_actual.push(parseFloat(row.FY25_Actual.replace(/[$,]/g, '')) || 0);
+                    fy26_dept.push(parseFloat(row.FY26_Dept.replace(/[$,]/g, '')) || 0);
+                    fy26_admin.push(parseFloat(row.FY26_Admin.replace(/[$,]/g, '')) || 0);
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${row.Category}</td>
+                                    <td>$${row.FY24_Actual}</td>
+                                    <td>$${row.FY25_Requested}</td>
+                                    <td>$${row.FY25_Actual}</td>
+                                    <td>$${row.FY26_Dept}</td>
+                                    <td>$${row.FY26_Admin}</td>
+                                    <td>${row.Change_Dollars}</td>
+                                    <td>${row.Change_Percent}</td>`;
+                    tableBody.appendChild(tr);
+                }
+            });
+            
+            new Chart(document.getElementById('expenditureChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'FY24 Actual', data: fy24, backgroundColor: '#2a7d2e' },
+                        { label: 'FY25 Requested', data: fy25_req, backgroundColor: '#1e5b24' },
+                        { label: 'FY25 Actual', data: fy25_actual, backgroundColor: '#34d399' },
+                        { label: 'FY26 Dept', data: fy26_dept, backgroundColor: '#ffd700' },
+                        { label: 'FY26 Admin', data: fy26_admin, backgroundColor: '#ff5733' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: (value) => `$${value.toLocaleString()}` } }
+                    }
+                }
+            });
+        }
+        loadExpenditures();
+    </script>
+</body>
+</html>
+
 
     <!-- Capital Plan Section -->
     <section class="section">
