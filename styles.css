@@ -28,16 +28,20 @@ body {
 .logo img {
     height: 50px;
 }
+
 .chart-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin: 20px 0;
 }
 
-.chart-container {
+.chart-box {
     position: relative;
-    height: 200px !important;
+    height: 300px;
+    padding: 1rem;
+    background: #f8f8f8;
+    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -45,6 +49,7 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -87,7 +92,6 @@ body {
 }
 
 .hero h1 {
-    margin: 0;
     font-size: 3rem;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -100,152 +104,7 @@ body {
     margin: 0 auto;
 }
 
-.dashboard-section {
-    margin: 2rem auto;
-    max-width: 1200px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.toggle-box {
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    text-align: left;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.toggle-box:hover {
-    background-color: var(--secondary-color);
-}
-
-.sub-toggle-box {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #f0f9f0;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    text-align: left;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-
-.sub-toggle-box:hover {
-    background-color: #e0f0e0;
-}
-
-.toggle-content {
-    padding: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.sub-toggle-content {
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-}
-
-/* Add rest of your existing styles */
-
-.tax-info, .changes-info {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.tax-grid {
-    margin: 2rem 0;
-}
-
-.tax-item {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background: #f8f8f8;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-.tax-amount {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.tax-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    background: var(--primary-color);
-    opacity: 0.3;
-}
-
-.changes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.change-card {
-    padding: 1.5rem;
-    border-radius: 8px;
-    background: #f8f8f8;
-    border-left: 4px solid var(--primary-color);
-}
-
-.change-amount {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin: 1rem 0;
-}
-
-.change-details {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.info-box {
-    background: #f8f8f8;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-}
-
-.info-box h4 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.info-box ul {
-    list-style: disc;
-    margin-left: 1.5rem;
-}
-
-.info-box li {
-    margin-bottom: 0.5rem;
-}
-
-#revenueChart, #expenditureChart {
-    height: 200px !important;
-    max-height: 200px;
-    width: 100% !important;
-    margin: 20px 0;
-}
-
+/* Responsive Menu */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -253,11 +112,11 @@ body {
 
     .nav-links {
         display: none;
-        width: 100%;
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
+        width: 100%;
         background-color: var(--primary-color);
         padding: 1rem;
     }
@@ -268,35 +127,5 @@ body {
 
     .nav-links li {
         margin: 0.5rem 0;
-    }
-
-    .changes-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .tax-amount {
-        font-size: 1.25rem;
-    }
-}
-/* Your existing styles remain the same, just update/add these chart-related styles */
-
-.chart-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin: 20px 0;
-}
-
-.chart-box {
-    position: relative;
-    height: 300px;
-    padding: 1rem;
-    background: #f8f8f8;
-    border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-    .chart-grid {
-        grid-template-columns: 1fr;
     }
 }
