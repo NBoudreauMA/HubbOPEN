@@ -28,7 +28,23 @@ body {
 .logo img {
     height: 50px;
 }
+.chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 20px 0;
+}
 
+.chart-container {
+    position: relative;
+    height: 200px !important;
+}
+
+@media (max-width: 768px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+}
 .nav-links {
     display: flex;
     list-style: none;
