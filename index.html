@@ -472,6 +472,38 @@
     }
     
     loadExpenditures();
+    async function loadExpenditures() {
+    try {
+        const response = await fetch('expenditures_cleaned.csv');
+        // ... existing code ...
+        console.log('Parsed CSV data:', parsedData);
+        
+        const tableBody = document.querySelector('#expenditureTable tbody');
+        tableBody.innerHTML = ""; 
+
+        const deptData = {};
+        for (const row of parsedData.data) {
+            // ... existing code ...
+        }
+        console.log('Department data:', deptData);
+
+        const pieChartData = {
+            labels: Object.keys(deptData),
+            datasets: [{
+                data: Object.values(deptData),
+                backgroundColor: [
+                    '#2a7d2e',
+                    // ... existing colors ... 
+                ]
+            }]
+        };
+        console.log('Pie chart data:', pieChartData);
+        
+        // ... existing code ...
+    } catch (error) {
+        console.error('Error loading expenditure data:', error);
+    }
+}
 </script>
 
 
