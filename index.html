@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget 2026 🚀</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
-    <script defer src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 🚀 Custom Styles -->
+    <!-- ✅ Modern Styles -->
     <style>
         :root {
             --primary: #2a7d2e;
@@ -23,36 +18,125 @@
             --radius: 10px;
         }
 
-        body { font-family: 'Poppins', sans-serif; background: var(--background); color: var(--text); }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Navbar */
-        .navbar { background: var(--primary); padding: 1rem 2rem; display: flex; justify-between items-center shadow-lg fixed w-full top-0 z-50 rounded-b-lg; }
-        .nav-links { display: flex; gap: 15px; }
-        .nav-links a { color: white; font-weight: 600; padding: 8px 12px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        /* 🔹 Navbar */
+        .navbar {
+            background: var(--primary);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px var(--shadow);
+            border-bottom: 3px solid var(--accent);
+        }
 
-        /* Hero */
-        .hero { text-align: center; padding: 7rem 0; background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)), url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') no-repeat center center; background-size: cover; color: white; }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+        }
 
-        /* Sections */
-        .section { max-width: 900px; margin: 2rem auto; background: var(--white); border-radius: var(--radius); padding: 2rem; box-shadow: 0 4px 8px var(--shadow); }
-        .toggle-header { background: var(--primary); color: white; padding: 1rem; font-weight: bold; cursor: pointer; border-radius: var(--radius); transition: 0.3s; }
-        .toggle-header:hover { background: var(--secondary); }
-        .toggle-content { display: none; padding: 1.5rem; animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            transition: 0.3s;
+        }
 
-        /* Charts */
-        .chart-container { padding: 1.5rem; background: var(--white); border-radius: var(--radius); box-shadow: 0 2px 6px var(--shadow); }
-        .canvas-container { max-width: 100%; height: 300px; }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-        /* Footer */
-        footer { text-align: center; padding: 1rem; background: var(--primary); color: white; margin-top: 2rem; }
+        /* 🔹 Hero */
+        .hero {
+            text-align: center;
+            padding: 7rem 0;
+            background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(30, 91, 36, 0.85)), 
+                        url('https://raw.githubusercontent.com/NBoudreauMA/Budget/refs/heads/main/hubbardston_bg.jpg') 
+                        no-repeat center center;
+            background-size: cover;
+            color: white;
+        }
+
+        /* 🔹 Sections */
+        .section {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        .toggle-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: var(--radius);
+            transition: 0.3s;
+        }
+
+        .toggle-header:hover {
+            background: var(--secondary);
+        }
+
+        .toggle-content {
+            display: none;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🔹 Charts */
+        .chart-container {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 6px var(--shadow);
+        }
+
+        .canvas-container {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        /* 🔹 Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 2rem;
+        }
     </style>
+
+    <!-- ✅ JavaScript -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 
 <body>
 
-    <!-- 🚀 Navigation -->
+    <!-- 🚀 Navbar -->
     <nav class="navbar">
         <div class="logo"><img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Hubbardston Seal" class="h-10"></div>
         <ul class="nav-links">
@@ -74,11 +158,19 @@
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('message')">🏛 Town Administrator’s Message ▼</div>
         <div class="toggle-content" id="message">
-            <p>Welcome to **Hubbardston's next-generation budget**! Our goal is **financial transparency, data-driven decision-making, and resident engagement.**</p>
+            <p>Hubbardston’s FY26 budget maintains **fiscal responsibility**, funds **essential services**, and positions the town for **sustainable growth**.</p>
+            <p>**Key Highlights:**</p>
+            <ul>
+                <li>📈 **Total Revenue:** $11,699,616 (+5.71%)</li>
+                <li>🏫 **Education Investment:** $7,334,563 (+8%)</li>
+                <li>🚓 **Public Safety Funding:** $1,581,842</li>
+                <li>🚧 **Public Works Allocation:** $920,184</li>
+                <li>🏗 **Capital Investment:** $275,000</li>
+            </ul>
         </div>
     </section>
 
-    <!-- 💰 Revenue -->
+    <!-- 📊 Revenue -->
     <section class="section">
         <div class="toggle-header" onclick="toggleSection('revenue')">💰 Revenue Overview ▼</div>
         <div class="toggle-content" id="revenue">
@@ -101,7 +193,7 @@
     <!-- 🚀 Footer -->
     <footer>© 2025 Town of Hubbardston - Budget Portal</footer>
 
-    <!-- 🚀 JavaScript -->
+    <!-- ✅ JavaScript -->
     <script>
         function toggleSection(id) {
             const section = document.getElementById(id);
@@ -124,7 +216,6 @@
         }
 
         loadCSV("revenue_data.csv", "revenueChart");
-        loadCSV("expenditures_cleaned.csv", "expenditureChart");
     </script>
 
 </body>
