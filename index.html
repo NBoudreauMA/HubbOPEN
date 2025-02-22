@@ -100,7 +100,17 @@
         <button class="toggle-box">Revenue Overview</button>
         <div class="toggle-content">
             <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-            <canvas id="revenueChart"></canvas>
+            
+            <!-- Charts container -->
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenuePieChart"></canvas>
+                </div>
+            </div>
+            
             <h3>Revenue Breakdown</h3>
             <table>
                 <tr>
@@ -133,16 +143,9 @@
                 </tr>
             </table>
         </div>
-        <!-- Add this right after the revenue bar chart canvas -->
-<div class="chart-grid">
-    <div class="chart-container">
-        <canvas id="revenueChart"></canvas>
     </div>
-    <div class="chart-container">
-        <canvas id="revenuePieChart"></canvas>
-    </div>
-</div>
-    </div>
+
+    <!-- Rest of the HTML remains the same -->
 
     <div class="dashboard-section" id="expenditures">
         <button class="toggle-box">Expenditure Overview</button>
