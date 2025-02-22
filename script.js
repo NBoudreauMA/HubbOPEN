@@ -32,23 +32,25 @@ document.addEventListener("DOMContentLoaded", function () {
             content.style.display = (content.style.display === "block") ? "none" : "block";
             console.log("Toggled:", content.style.display);
         }
+
+        // Load charts only when the section is expanded
+        setTimeout(initChartsIfVisible, 300);
     }
 
     setTimeout(attachToggleListeners, 500); // Ensure proper event attachment
 
     // ===== Chart.js Fix (Ensure Proper Destruction) =====
-    let charts = {};
+    let charts = {}; // Store active chart instances
 
     function createChart(chartId, chartData) {
         const canvas = document.getElementById(chartId);
         if (canvas) {
             const ctx = canvas.getContext("2d");
 
-            // ✅ Ensure we destroy any existing chart before creating a new one
-            if (charts[chartId]) {
+            // ✅ Ensure we completely destroy any existing chart before creating a new one
+            if (Chart.getChart(canvas)) {  // This checks if a chart instance already exists
                 console.log(`Destroying existing chart: ${chartId}`);
-                charts[chartId].destroy();
-                charts[chartId] = null; // Ensure cleanup
+                Chart.getChart(canvas).destroy();
             }
 
             // ✅ Create new chart
