@@ -4,9 +4,207 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hubbardston Budget Portal</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Embedded CSS -->
+    <style>
+        :root {
+            --primary-color: #2a7d2e;
+            --secondary-color: #1e5b24;
+            --accent-color: #ffd700;
+            --text-color: #333;
+            --background-color: #f5f5f5;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(30, 91, 36, 0.85), rgba(42, 125, 46, 0.85)), 
+                        url('https://github.com/NBoudreauMA/Budget/blob/main/hubbardston_bg.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 20px 0;
+        }
+
+        .chart-box {
+            position: relative;
+            height: 300px;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Chart.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="script.js"></script>
+
+    <!-- Embedded JavaScript -->
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector(".menu-toggle");
+            const navLinks = document.querySelector(".nav-links");
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function () {
+                    navLinks.classList.toggle("active");
+                });
+            }
+
+            // Initialize Charts if Canvas Elements Exist
+            if (window.Chart) {
+                const revenueBarCtx = document.getElementById("revenueBarChart");
+                const revenuePieCtx = document.getElementById("revenuePieChart");
+                const expenditureCtx = document.getElementById("expenditureChart");
+
+                if (revenueBarCtx) {
+                    new Chart(revenueBarCtx, {
+                        type: "bar",
+                        data: {
+                            labels: ["Taxes", "State Aid", "Local Receipts"],
+                            datasets: [
+                                {
+                                    label: "Revenue",
+                                    data: [500000, 200000, 100000],
+                                    backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
+                                },
+                            ],
+                        },
+                        options: { responsive: true },
+                    });
+                }
+
+                if (revenuePieCtx) {
+                    new Chart(revenuePieCtx, {
+                        type: "pie",
+                        data: {
+                            labels: ["Taxes", "State Aid", "Local Receipts"],
+                            datasets: [
+                                {
+                                    label: "Revenue",
+                                    data: [500000, 200000, 100000],
+                                    backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
+                                },
+                            ],
+                        },
+                        options: { responsive: true },
+                    });
+                }
+
+                if (expenditureCtx) {
+                    new Chart(expenditureCtx, {
+                        type: "doughnut",
+                        data: {
+                            labels: ["Education", "Public Safety", "Infrastructure"],
+                            datasets: [
+                                {
+                                    label: "Expenditures",
+                                    data: [600000, 300000, 150000],
+                                    backgroundColor: ["#2a7d2e", "#1e5b24", "#ffd700"],
+                                },
+                            ],
+                        },
+                        options: { responsive: true },
+                    });
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -25,135 +223,30 @@
 
     <header class="hero">
         <h1>FY26 Budget Proposal</h1>
-        <p>Comprehensive overview of Hubbardston's financial plan and strategic investments for Fiscal Year 2026.</p>
+        <p>Comprehensive overview of Hubbardston's financial plan and strategic investments.</p>
     </header>
 
-    <div class="dashboard-section" id="message">
-        <button class="toggle-box">Town Administrator's Message</button>
-        <div class="toggle-content">
-            <div class="ta-message">
-                <div class="ta-header">
-                    <img src="https://www.hubbardstonma.gov/sites/all/themes/custom/sites/hubbardstonma/vts_hubbardstonma/logo.png" alt="Town Seal" class="ta-seal">
-                    <div class="ta-info">
-                        <h2>Office of the Town Administrator</h2>
-                        <p>2 Main Street, Unit 5</p>
-                        <p>Hubbardston, MA 01452</p>
-                    </div>
-                </div>
-                
-                <div class="message-content">
-                    <!-- Message content remains the same -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="dashboard-section" id="revenue">
-        <button class="toggle-box">Revenue Overview</button>
-        <div class="toggle-content">
-            <p>Hubbardston's revenue sources include Tax Levy, State Aid, and Local Receipts.</p>
-            
-            <div class="chart-grid">
-                <div class="chart-box">
-                    <canvas id="revenueBarChart"></canvas>
-                </div>
-                <div class="chart-box">
-                    <canvas id="revenuePieChart"></canvas>
-                </div>
-            </div>
-
-            <h3>Revenue Breakdown</h3>
-            <table>
-                <!-- Table content remains the same -->
-            </table>
-        </div>
-    </div>
-
-    <div class="dashboard-section" id="expenditures">
-        <button class="toggle-box">Expenditure Overview</button>
-        <div class="toggle-content">
-            <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
+    <section id="revenue">
+        <h2>Revenue Overview</h2>
+        <div class="chart-grid">
             <div class="chart-box">
-                <canvas id="expenditureChart"></canvas>
+                <canvas id="revenueBarChart"></canvas>
             </div>
-            <h3>Expenditure Breakdown</h3>
-            <table>
-                <!-- Table content remains the same -->
-            </table>
-        </div>
-    </div>
-
-    <div class="dashboard-section" id="capital">
-        <button class="toggle-box">Capital Improvement Plan</button>
-        <div class="toggle-content">
-            <div class="capital-message">
-                <div class="capital-header">
-                    <h3>FY26-FY30 Capital Investment Strategy</h3>
-                    <p>Strengthening Hubbardston through Infrastructure, Efficiency, and Community Investment</p>
-                </div>
-                
-                <div class="key-highlight-box">
-                    <h4>Public Safety Building Initiative</h4>
-                    <p>The Town will seek voter approval for a Proposition 2.5 override to fund a new consolidated Public Safety Building and Municipal Office Space at 48 Gardner Road. This strategic investment will enhance emergency response capabilities, improve interdepartmental collaboration, and create a modern, efficient workspace for town operations.</p>
-                </div>
-
-                <div class="highlights-grid">
-                    <div class="highlight-box">
-                        <h4>One-Year Funded Projects (FY26)</h4>
-                        <ul>
-                            <li>Annual Roads Program ($100,000)</li>
-                            <li>Fire Equipment Upgrades ($65,463)</li>
-                            <li>DPW Equipment Modernization ($54,007)</li>
-                            <li>Technology Infrastructure ($20,000)</li>
-                        </ul>
-                    </div>
-                    <div class="highlight-box">
-                        <h4>Grant Opportunities</h4>
-                        <ul>
-                            <li>Library ADA Elevator ($550,500)</li>
-                            <li>High Street Reconstruction ($1.7M)</li>
-                            <li>Fire Engine Replacement ($650,000)</li>
-                            <li>Energy Efficiency Upgrades</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="chart-box">
+                <canvas id="revenuePieChart"></canvas>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="dashboard-section" id="info">
-        <button class="toggle-box">More Information</button>
-        <div class="toggle-content">
-            <div class="info-subsection">
-                <button class="sub-toggle-box">Where Your Tax Dollars Go</button>
-                <div class="sub-toggle-content">
-                    <div class="tax-info">
-                        <!-- Tax info content -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-subsection">
-                <button class="sub-toggle-box">Year-Over-Year Changes</button>
-                <div class="sub-toggle-content">
-                    <div class="changes-grid">
-                        <!-- Changes content -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-subsection">
-                <button class="sub-toggle-box">Budget Timeline</button>
-                <div class="sub-toggle-content">
-                    <div id="timeline"></div>
-                </div>
-            </div>
+    <section id="expenditures">
+        <h2>Expenditure Overview</h2>
+        <div class="chart-box">
+            <canvas id="expenditureChart"></canvas>
         </div>
-    </div>
+    </section>
 
     <footer>
         <p>© 2025 Town of Hubbardston - Budget Portal</p>
     </footer>
-
 </body>
 </html>
