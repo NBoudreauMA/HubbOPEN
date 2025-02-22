@@ -335,32 +335,49 @@
         </div>
     </section>
 
- <!-- Expenditure Section -->
+<!-- Expenditure Section -->
 <section class="section">
     <div class="toggle-header" onclick="toggleSection('expenditures')">
-        Expenditure Overview 
+        Expenditure Overview
         <span class="toggle-icon">▼</span>
     </div>
     <div class="toggle-content" id="expenditures">
-        <p>Hubbardston's expenditures include General Government, Public Safety, Education, and Public Works.</p>
+        <h3>Budgeted Expenditures by Department</h3>
+        <p>The FY26 Budget Proposal carefully allocates funds across key departments to ensure ongoing delivery of essential services while supporting the town's strategic priorities. The chart below shows the distribution of budgeted expenditures by department:</p>
+        
         <div class="chart-box">
-            <canvas id="expenditureChart"></canvas>
+            <canvas id="expenditurePieChart"></canvas>
         </div>
-        <table class="data-table" id="expenditureTable">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>FY24 Actual</th>
-                    <th>FY25 Requested</th>
-                    <th>FY25 Actual</th>
-                    <th>FY26 Dept</th>
-                    <th>FY26 Admin</th>
-                    <th>Change ($)</th>
-                    <th>Change (%)</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+
+        <div class="expenditure-highlights">
+            <h4>Key Highlights</h4>
+            <ul>
+                <li>Education remains the largest component at 62% of total expenditures, reflecting our strong commitment to Hubbardston's schools.</li>
+                <li>Public Safety sees a strategic increase to support the new consolidated Public Safety Building.</li>
+                <li>Funding for Public Works enables vital infrastructure maintenance and improvements.</li>
+                <li>General Government expenditures provide for effective town management and operations.</li>
+            </ul>
+        </div>
+        
+        <div class="expenditure-table">
+            <h4>Detailed Expenditures</h4>
+            <p>The table below provides a granular view of expenditures across all categories:</p>
+            <table class="data-table" id="expenditureTable">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>FY24 Actual</th>
+                        <th>FY25 Requested</th>
+                        <th>FY25 Actual</th>
+                        <th>FY26 Dept</th>
+                        <th>FY26 Admin</th>
+                        <th>Change ($)</th>
+                        <th>Change (%)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </section>
 
@@ -381,59 +398,74 @@
                 throw new Error("CSV file has no valid rows.");
             }
             
-            const labels = [];
-            const fy24 = [], fy25_req = [], fy25_actual = [], fy26_dept = [], fy26_admin = [];
             const tableBody = document.querySelector('#expenditureTable tbody');
             tableBody.innerHTML = ""; // Clear any previous data
 
+            // Extract data for the departmental pie chart
+            const deptData = {};
             for (const row of parsedData.data) {
-                if (row.Category && row.FY24_Actual) {
-                    labels.push(row.Category);
-                    fy24.push(parseFloat(row.FY24_Actual.replace(/[$,]/g, '')) || 0);
-                    fy25_req.push(parseFloat(row.FY25_Requested.replace(/[$,]/g, '')) || 0);
-                    fy25_actual.push(parseFloat(row.FY25_Actual.replace(/[$,]/g, '')) || 0);
-                    fy26_dept.push(parseFloat(row.FY26_Dept.replace(/[$,]/g, '')) || 0);
-                    fy26_admin.push(parseFloat(row.FY26_Admin.replace(/[$,]/g, '')) || 0);
+                if (row.Category && row.FY26_Admin && !isNaN(row.FY26_Admin)) {
+                    const amount = parseFloat(row.FY26_Admin);
+                    const dept = row.Category.split(' -')[0];  // Get the main department name
+                    deptData[dept] = (deptData[dept] || 0) + amount;
                     
+                    // Populate the detailed expenditure table
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${row.Category}</td>
-                        <td>$${row.FY24_Actual}</td>
-                        <td>$${row.FY25_Requested}</td>
-                        <td>$${row.FY25_Actual}</td>
-                        <td>$${row.FY26_Dept}</td>
-                        <td>$${row.FY26_Admin}</td>
-                        <td>${row.Change_Dollars || 'N/A'}</td>
-                        <td>${row.Change_Percent || 'N/A'}</td>
+                        <td>$${row.FY24_Actual.toLocaleString()}</td>
+                        <td>$${row.FY25_Requested.toLocaleString()}</td>
+                        <td>$${row.FY25_Actual.toLocaleString()}</td>
+                        <td>$${row.FY26_Dept.toLocaleString()}</td>  
+                        <td>$${row.FY26_Admin.toLocaleString()}</td>
+                        <td>${row.Change_Dollars}</td>
+                        <td>${row.Change_Percent}</td>
                     `;
                     tableBody.appendChild(tr);
                 }
             }
-            
-            new Chart(document.getElementById('expenditureChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'FY24 Actual', data: fy24, backgroundColor: '#2a7d2e' },
-                        { label: 'FY25 Requested', data: fy25_req, backgroundColor: '#1e5b24' },
-                        { label: 'FY25 Actual', data: fy25_actual, backgroundColor: '#34d399' },
-                        { label: 'FY26 Dept', data: fy26_dept, backgroundColor: '#ffd700' },
-                        { label: 'FY26 Admin', data: fy26_admin, backgroundColor: '#ff5733' }
+
+            // Create the departmental pie chart
+            const pieChartData = {
+                labels: Object.keys(deptData),
+                datasets: [{
+                    data: Object.values(deptData),
+                    backgroundColor: [
+                        '#2a7d2e',
+                        '#1e5b24', 
+                        '#34d399',
+                        '#ffd700',
+                        '#ff5733',
+                        '#9c27b0',
+                        '#3f51b5'  
                     ]
-                },
+                }]
+            };
+
+            new Chart(document.getElementById('expenditurePieChart'), {
+                type: 'pie',
+                data: pieChartData,
                 options: {
-                    responsive: true, 
-                    scales: {
-                        y: { 
-                            beginAtZero: true,
-                            ticks: {
-                                callback: value => `$${value.toLocaleString()}`  
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'FY26 Expenditures by Department'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${context.label}: $${value.toLocaleString()} (${percentage}%)`;
+                                }
                             }
                         }
                     }
                 }
             });
+
         } catch (error) {
             console.error('Error loading expenditure data:', error);
         }
