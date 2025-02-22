@@ -369,7 +369,7 @@
         }
 
         async function loadExpenditures() {
-            const response = await fetch('FY26_Working_Budget_Cleaned.csv');
+            const response = await fetch('expenditures_cleaned.csv');
             const csvText = await response.text();
             const parsedData = Papa.parse(csvText, { header: true, skipEmptyLines: true });
             
