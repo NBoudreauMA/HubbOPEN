@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HubbTIME – Dev Submit</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 16px; }
+    button { padding:10px 16px; border:0; border-radius:8px; cursor:pointer; background:#106ebe; color:#fff; }
+    pre { background:#0f0f0f; color:#fff; padding:12px; border-radius:8px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <button id="btn">Submit HubbTIME Test</button>
+  <pre id="resp">{}</pre>
+
+  <script>
+    // 1) Your API endpoint
+    const URL = "https://hubbardstonma-hubbtimeprefill-dev.api.transform.civicplus.com/hubbtime/submit";
+    // 2) Temporary token (replace later)
+    const TOKEN = "dev-temp-token";
+
+    // 3) Click -> POST -> show response
+    document.getElementById("btn").onclick = async () => {
+      const payload = {
+        employeeId: "3238",
+        Employee_Name: "Patricia Lowe",
+        entries: [{ date: new Date().toISOString().slice(0,10), hours: 8 }]
+      };
+
+      const res = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-HUBBTIME-TOKEN": TOKEN
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const text = await res.text();
+      document.getElementById("resp").textContent = text;
+    };
+  </script>
+</body>
+</html>
