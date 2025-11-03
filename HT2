@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HubbTIME · Town of Hubbardston</title>
+  <meta name="description" content="Town of Hubbardston – Enhanced Biweekly Timesheet System" />
+  <style>
+:root {
+  --forest-dark: #1a3d2e; --forest: #2d5a47; --sage: #4a7560; --sage-light: #6b9080;
+  --meadow: #86a895; --cream: #f4f1e8; --ink: #2c2416; --bg: var(--cream);
+  --panel: #fefcf8; --card: #ffffff; --muted: #6b6b47; --border: #d4cfc4;
+  --shadow: rgba(45, 90, 71, 0.08); --accent: var(--forest); --accent-light: var(--sage);
+  --success: #22c55e; --warning: #f59e0b; --error: #ef4444; --info: #3b82f6;
+  --space-xs: 0.25rem; --space-sm: 0.5rem; --space-md: 1rem; --space-lg: 1.5rem;
+  --space-xl: 2rem; --space-2xl: 3rem; --radius: 8px; --radius-lg: 12px; --transition: 0.2s ease;
+}
+[data-theme="dark"] {
+  --bg: #0f1714; --panel: #111d18; --card: #13211b; --ink: #e7f2ec;
+  --muted: #7aa892; --border: #1f2c27; --shadow: rgba(0, 0, 0, 0.25);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg); color: var(--ink); line-height: 1.6; min-height: 100vh; font-size: 16px;
+}
+.tabnums { font-variant-numeric: tabular-nums; }
+.btn { cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header class="site-header" style="background:linear-gradient(135deg,var(--forest-dark),var(--forest));padding:var(--space-lg);color:var(--cream);">
+    <h1 style="margin:0;">HubbTIME</h1>
+  </header>
+
+  <main class="container" style="max-width:1100px;margin:auto;padding:1.5rem;">
+    <h2>Enhanced Biweekly Timesheet</h2>
+
+    <form id="timesheetForm">
+      <section class="card">
+        <div class="form-group">
+          <label class="label" for="employeeSearch">Employee Name</label>
+          <input id="employeeSearch" list="employeeList" class="input" placeholder="Start typing name..." autocomplete="off">
+          <datalist id="employeeList"></datalist>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="form-group">
+          <label class="label" for="warrant">Select Pay Period</label>
+          <select id="warrant" class="input tabnums" required>
+            <option value="">Select Pay Period...</option>
+          </select>
+          <div id="warrantDetails" style="display:none;margin-top:.5rem;">
+            <div><strong>Dates:</strong> <span id="warrantDates">—</span></div>
+            <div><strong>Due:</strong> <span id="warrantDue">—</span></div>
+            <div><strong>Check:</strong> <span id="warrantCheck">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="quick-actions" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+          <button type="button" class="btn" id="addRowBtn">Add Row</button>
+          <button type="button" class="btn" id="townHallBtn">Town Hall Hours</button>
+          <button type="button" class="btn" id="sickBtn">Sick Day (8h)</button>
+          <button type="button" class="btn" id="vacationBtn">Vacation Day (8h)</button>
+          <button type="button" class="btn" id="holidayBtn">Holiday (8h)</button>
+          <button type="button" class="btn" id="personalBtn">Personal Day (8h)</button>
+          <button type="button" class="btn" id="clearAllBtn">Clear All</button>
+        </div>
+        <table style="width:100%;border-collapse:collapse;" id="timeTable">
+          <thead>
+            <tr><th>Date</th><th>Start</th><th>End</th><th>Hours</th><th>Type</th><th>Description</th><th></th></tr>
+          </thead>
+          <tbody id="timeBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Summary</h3>
+        <div id="totals" style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <div>Regular: <span id="sumRegular">0.00</span></div>
+          <div>Sick: <span id="sumSick">0.00</span></div>
+          <div>Vacation: <span id="sumVacation">0.00</span></div>
+          <div>Holiday: <span id="sumHoliday">0.00</span></div>
+          <div>Personal: <span id="sumPersonal">0.00</span></div>
+          <div>Total: <span id="totalHours">0.00</span></div>
+          <div>Pay: <span id="grossPay">$0.00</span></div>
+        </div>
+
+        <div class="form-group" id="stipendGroup" style="margin-top:1rem;">
+          <label class="label">Stipends / Other Pay (this pay period)</label>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
+            <div><div>Fire Stipend</div><input type="number" class="input" id="stipendFire" min="0" step="0.01" placeholder="0.00"></div>
+            <div><div>DPW Stipend</div><input type="number" class="input" id="stipendDpw" min="0" step="0.01" placeholder="0.00"></div>
+          </div>
+          <div style="margin-top:1rem;">
+            <label class="label" for="stipendNote">Note</label>
+            <textarea id="stipendNote" class="input" rows="2" placeholder="Describe stipend, on-call, or other pay..."></textarea>
+          </div>
+          <small style="color:var(--muted)">These stipends are added to pay only, not hours or GL splits.</small>
+        </div>
+      </section>
+
+      <section style="text-align:center;margin-top:2rem;">
+        <button type="submit" class="btn" style="padding:.8rem 2rem;">Submit Timesheet</button>
+        <div id="submitStatus" style="margin-top:.5rem;"></div>
+      </section>
+    </form>
+  </main>
+
+  <script>
+(function(){
+'use strict';
+
+const FLOW_URL="#";
+
+const WARRANTS=[
+{number:9,start:"2025-10-19",end:"2025-11-01",due:"2025-11-03",check:"2025-11-06"},
+{number:10,start:"2025-11-02",end:"2025-11-15",due:"2025-11-17",check:"2025-11-20"},
+{number:11,start:"2025-11-16",end:"2025-11-29",due:"2025-12-01",check:"2025-12-04"}
+];
+
+const fmtISO=(d)=>{const date=new Date(d+'T00:00:00');const y=date.getFullYear();const m=String(date.getMonth()+1).padStart(2,'0');const day=String(date.getDate()).padStart(2,'0');const wk=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][date.getDay()];return `${wk} ${y}-${m}-${day}`;};
+const periodLabel=(w)=>`Warrant ${String(w.number).padStart(2,'0')} — ${fmtISO(w.start)} to ${fmtISO(w.end)} · Due ${fmtISO(w.due)} · Check ${fmtISO(w.check)}`;
+
+const $=(s)=>document.querySelector(s);
+const currency=(n)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(n||0));
+
+function addTimeRow(date='',start='',end='',hours='',type='Regular',desc=''){
+ const tbody=$('#timeBody');if(!tbody)return;
+ const tr=document.createElement('tr');
+ tr.innerHTML=`<td><input type="date" class="date input" value="${date}"></td>
+ <td><input type="time" class="start input" value="${start}"></td>
+ <td><input type="time" class="end input" value="${end}"></td>
+ <td><input type="number" class="hours input" step="0.25" min="0" value="${hours}" placeholder="0.00"></td>
+ <td><select class="type input">
+ <option${type==='Regular'?' selected':''}>Regular</option>
+ <option${type==='Sick'?' selected':''}>Sick</option>
+ <option${type==='Vacation'?' selected':''}>Vacation</option>
+ <option${type==='Holiday'?' selected':''}>Holiday</option>
+ <option${type==='Personal'?' selected':''}>Personal</option>
+ </select></td>
+ <td><input type="text" class="desc input" value="${desc}"></td>
+ <td><button type="button" class="btn remove">X</button></td>`;
+ tbody.appendChild(tr);
+ tr.querySelector('.remove').addEventListener('click',()=>{tr.remove();calculateTotals();});
+ tr.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calculateTotals));
+}
+
+function clearAll(){ $('#timeBody').innerHTML=''; calculateTotals(); addTimeRow(); }
+
+function addQuickDay(type,label,h=8){ addTimeRow('', '', '', h, type, label); calculateTotals(); }
+
+function calculateTotals(){
+ let total=0,regular=0,sick=0,vacation=0,holiday=0,personal=0;
+ document.querySelectorAll('#timeBody tr').forEach(r=>{
+   const h=parseFloat(r.querySelector('.hours')?.value||0)||0;
+   const t=r.querySelector('.type')?.value||'Regular';
+   if(!h)return; total+=h;
+   if(t==='Regular')regular+=h; else if(t==='Sick')sick+=h;
+   else if(t==='Vacation')vacation+=h; else if(t==='Holiday')holiday+=h;
+   else if(t==='Personal')personal+=h;
+ });
+ $('#sumRegular').textContent=regular.toFixed(2);
+ $('#sumSick').textContent=sick.toFixed(2);
+ $('#sumVacation').textContent=vacation.toFixed(2);
+ $('#sumHoliday').textContent=holiday.toFixed(2);
+ $('#sumPersonal').textContent=personal.toFixed(2);
+ $('#totalHours').textContent=total.toFixed(2);
+
+ let gross=(regular+vacation+sick+holiday+personal)*25; // placeholder rate
+ const stipendFire=parseFloat($('#stipendFire')?.value||0)||0;
+ const stipendDpw=parseFloat($('#stipendDpw')?.value||0)||0;
+ gross+=stipendFire+stipendDpw;
+ $('#grossPay').textContent=currency(gross);
+}
+
+function handleSubmit(e){
+ e.preventDefault();
+ const payload={
+   totals:{
+     totalHours:parseFloat($('#totalHours')?.textContent||0),
+     regularHours:parseFloat($('#sumRegular')?.textContent||0),
+     sickHours:parseFloat($('#sumSick')?.textContent||0),
+     vacationHours:parseFloat($('#sumVacation')?.textContent||0),
+     holidayHours:parseFloat($('#sumHoliday')?.textContent||0),
+     personalHours:parseFloat($('#sumPersonal')?.textContent||0),
+     grossPay:$('#grossPay')?.textContent||'$0.00'
+   },
+   stipends:{
+     fire:parseFloat($('#stipendFire')?.value||0)||0,
+     dpw:parseFloat($('#stipendDpw')?.value||0)||0,
+     note:($('#stipendNote')?.value||'').trim()
+   },
+   entries:Array.from(document.querySelectorAll('#timeBody tr')).map(r=>({
+     date:r.querySelector('.date')?.value||'',
+     start:r.querySelector('.start')?.value||'',
+     end:r.querySelector('.end')?.value||'',
+     hours:parseFloat(r.querySelector('.hours')?.value||0)||0,
+     type:r.querySelector('.type')?.value||'Regular',
+     description:r.querySelector('.desc')?.value||''
+   }))
+ };
+ console.log('Submitting',payload);
+ $('#submitStatus').textContent='✓ Submitted (check console payload)';
+}
+
+function init(){
+ WARRANTS.forEach(w=>{
+   const o=document.createElement('option');
+   o.value=w.number; o.textContent=periodLabel(w);
+   $('#warrant').appendChild(o);
+ });
+ $('#warrant').addEventListener('change',function(){
+   const w=WARRANTS.find(x=>x.number==this.value);
+   if(!w)return; $('#warrantDetails').style.display='block';
+   $('#warrantDates').textContent=`${fmtISO(w.start)} – ${fmtISO(w.end)}`;
+   $('#warrantDue').textContent=fmtISO(w.due);
+   $('#warrantCheck').textContent=fmtISO(w.check);
+ });
+ addTimeRow();
+ $('#addRowBtn').addEventListener('click',()=>addTimeRow());
+ $('#sickBtn').addEventListener('click',()=>addQuickDay('Sick','Sick Day'));
+ $('#vacationBtn').addEventListener('click',()=>addQuickDay('Vacation','Vacation Day'));
+ $('#holidayBtn').addEventListener('click',()=>addQuickDay('Holiday','Holiday'));
+ $('#personalBtn').addEventListener('click',()=>addQuickDay('Personal','Personal Day'));
+ $('#clearAllBtn').addEventListener('click',()=>clearAll());
+ $('#stipendFire').addEventListener('input',calculateTotals);
+ $('#stipendDpw').addEventListener('input',calculateTotals);
+ $('#timesheetForm').addEventListener('submit',handleSubmit);
+ calculateTotals();
+}
+
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
+})();
+  </script>
+</body>
+</html>
